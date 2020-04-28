@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>foochane</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://foochane.cn/"/>
+  <updated>2020-04-28T05:13:01.563Z</updated>
+  <id>https://foochane.cn/</id>
+  
+  <author>
+    <name>foochane</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java学习笔记（十四）：MySQL数据库</title>
+    <link href="https://foochane.cn/article/2020011301.html"/>
+    <id>https://foochane.cn/article/2020011301.html</id>
+    <published>2020-01-13T05:36:00.000Z</published>
+    <updated>2020-04-28T05:13:01.563Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;!-- 
+
+&gt;[foochane](https://foochane.cn/) ：[https://foochane.cn/article/2020011301.html](https://foochane.cn/article/2020011301.html)
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/tags/Java/"/>
+    
+      <category term="MySQL" scheme="https://foochane.cn/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java学习笔记（十三）：Junit单元测试、反射、注解</title>
+    <link href="https://foochane.cn/article/2020011001.html"/>
+    <id>https://foochane.cn/article/2020011001.html</id>
+    <published>2020-01-10T07:17:00.000Z</published>
+    <updated>2020-04-28T05:13:01.563Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;!-- 
+&gt;[foochane](https://foochane.cn/) ：[https://foochane.cn/article/2020011001.html](https://foochane.cn/article/2020011001.html)
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java学习笔记（十二）：方法引用</title>
+    <link href="https://foochane.cn/article/2020010501.html"/>
+    <id>https://foochane.cn/article/2020010501.html</id>
+    <published>2020-01-06T07:09:00.000Z</published>
+    <updated>2020-04-28T05:13:01.563Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;!-- 
+&gt;[foochane](https://foochane.cn/) ：[https://foochane.cn/article/2020010501.html](https://foochane.cn/article/2020010501.html)
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java学习笔记（十一）：Stream流</title>
+    <link href="https://foochane.cn/article/2020010403.html"/>
+    <id>https://foochane.cn/article/2020010403.html</id>
+    <published>2020-01-04T12:11:00.000Z</published>
+    <updated>2020-04-28T05:13:01.559Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;!-- 
+&gt;[foochane](https://foochane.cn/) ：[https://foochane.cn/article/2020010403.html](https://foochane.cn/article/2020010403.html)
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java学习笔记（十）：函数式接口</title>
+    <link href="https://foochane.cn/article/2020010402.html"/>
+    <id>https://foochane.cn/article/2020010402.html</id>
+    <published>2020-01-04T08:55:00.000Z</published>
+    <updated>2020-04-28T05:13:01.563Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;!-- 
+&gt;[foochane](https://foochane.cn/) ：[https://foochane.cn/article/2020010402.html](https://foochane.cn/article/2020010402.html)
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java学习笔记（九）：网络编程</title>
+    <link href="https://foochane.cn/article/2020010401.html"/>
+    <id>https://foochane.cn/article/2020010401.html</id>
+    <published>2020-01-04T01:54:00.000Z</published>
+    <updated>2020-04-28T05:13:01.559Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;!-- 
+&gt;[foochane](https://foochane.cn/) ：[https://foochane.cn/article/2020010401.html](https://foochane.cn/article/2020010401.html)
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java学习笔记（八）：缓冲流、转换流和序列化流</title>
+    <link href="https://foochane.cn/article/2020010201.html"/>
+    <id>https://foochane.cn/article/2020010201.html</id>
+    <published>2020-01-02T05:44:00.000Z</published>
+    <updated>2020-04-28T05:13:01.559Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;!-- 
+&gt;[foochane](https://foochane.cn/) ：[https://foochane.cn/article/2020010201.html](https://foochane.cn/article/2020010201.html)
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java学习笔记（七）：字节流和字符流</title>
+    <link href="https://foochane.cn/article/2020010101.html"/>
+    <id>https://foochane.cn/article/2020010101.html</id>
+    <published>2020-01-01T03:05:00.000Z</published>
+    <updated>2020-04-28T05:13:01.559Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;!-- 
+&gt;[foochane](https://foochane.cn/) ：[https://foochane.cn/article/2020010101.html](https://foochane.cn/article/2020010101.html)
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java学习笔记（六）：Lambda表达式</title>
+    <link href="https://foochane.cn/article/2019123101.html"/>
+    <id>https://foochane.cn/article/2019123101.html</id>
+    <published>2019-12-31T07:22:00.000Z</published>
+    <updated>2020-04-28T05:13:01.559Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;!-- 
+&gt;[foochane](https://foochane.cn/) ：[https://foochane.cn/article/2019123101.html](https://foochane.cn/article/2019123101.html)
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java学习笔记（五）：线程</title>
+    <link href="https://foochane.cn/article/2019123002.html"/>
+    <id>https://foochane.cn/article/2019123002.html</id>
+    <published>2019-12-30T07:48:00.000Z</published>
+    <updated>2020-04-28T05:13:01.558Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;!-- 
+&gt;[foochane](https://foochane.cn/) ：[https://foochane.cn/article/2019123002.html](https://foochane.cn/article/2019123002.html)
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java学习笔记（四）：异常处理</title>
+    <link href="https://foochane.cn/article/2019123001.html"/>
+    <id>https://foochane.cn/article/2019123001.html</id>
+    <published>2019-12-30T04:05:00.000Z</published>
+    <updated>2020-04-28T05:13:01.559Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;!-- 
+&gt;[foochane](https://foochane.cn/) ：[https://foochane.cn/article/2019123001.html](https://foochane.cn/article/2019123001.html)
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java学习笔记（三）：集合类与常用数据结构的典型用法</title>
+    <link href="https://foochane.cn/article/2019122801.html"/>
+    <id>https://foochane.cn/article/2019122801.html</id>
+    <published>2019-12-28T05:31:00.000Z</published>
+    <updated>2020-04-28T05:13:01.558Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;!-- 
+&gt;[foochane](https://foochane.cn/) ：[https://foochane.cn/article/2019122801.html](https://foochane.cn/article/2019122801.html)
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java学习笔记（二）：常用API总结</title>
+    <link href="https://foochane.cn/article/2019122001.html"/>
+    <id>https://foochane.cn/article/2019122001.html</id>
+    <published>2019-12-20T13:21:18.000Z</published>
+    <updated>2020-04-28T05:13:01.557Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;!-- 
+&gt;[foochane](https://foochane.cn/) ：[https://foochane.cn/article/2019122001.html](https://foochane.cn/article/2019122001.html)
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java学习笔记（一）：基础概念和语法</title>
+    <link href="https://foochane.cn/article/2019121501.html"/>
+    <id>https://foochane.cn/article/2019121501.html</id>
+    <published>2019-12-15T14:00:00.000Z</published>
+    <updated>2020-04-28T05:13:01.553Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;!-- 
+&gt;[foochane](https://foochane.cn/) ：[https://foochane.cn/article/2019121501.html](https://foochane.cn/article/2019121501.html)
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Springboot多模块Maven项目打包</title>
+    <link href="https://foochane.cn/article/2019110801.html"/>
+    <id>https://foochane.cn/article/2019110801.html</id>
+    <published>2019-11-08T14:27:28.000Z</published>
+    <updated>2020-04-28T05:13:01.567Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;1-项目结构&quot;&gt;&lt;a href=&quot;#1-项目结构&quot; class=&quot;headerlink&quot; title=&quot;1 项目结构&quot;&gt;&lt;/a&gt;1 项目结构&lt;/h2&gt;&lt;div class=&quot;code-area-wrap&quot;&gt;&lt;div
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>pip源更换国内镜像</title>
+    <link href="https://foochane.cn/article/2019102201.html"/>
+    <id>https://foochane.cn/article/2019102201.html</id>
+    <published>2019-10-22T12:56:00.000Z</published>
+    <updated>2020-04-28T05:13:01.567Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;1-常用的国内镜像包括&quot;&gt;&lt;a href=&quot;#1-常用的国内镜像包括&quot; class=&quot;headerlink&quot; title=&quot;1 常用的国内镜像包括&quot;&gt;&lt;/a&gt;1 常用的国内镜像包括&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;阿里云： &lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="其他" scheme="https://foochane.cn/categories/%E5%85%B6%E4%BB%96/"/>
+    
+    
+      <category term="其他" scheme="https://foochane.cn/tags/%E5%85%B6%E4%BB%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>文本分类之常用方法总结</title>
+    <link href="https://foochane.cn/article/2019091501.html"/>
+    <id>https://foochane.cn/article/2019091501.html</id>
+    <published>2019-09-15T11:46:00.000Z</published>
+    <updated>2020-04-28T05:13:01.567Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;1-TFIDF-逻辑回归&quot;&gt;&lt;a href=&quot;#1-TFIDF-逻辑回归&quot; class=&quot;headerlink&quot; title=&quot;1 TFIDF+逻辑回归&quot;&gt;&lt;/a&gt;1 TFIDF+逻辑回归&lt;/h2&gt;&lt;div class=&quot;code-area-wrap&quot;&gt;&lt;div
+        
+      
+    
+    </summary>
+    
+    
+      <category term="NLP" scheme="https://foochane.cn/categories/NLP/"/>
+    
+    
+      <category term="文本分类" scheme="https://foochane.cn/tags/%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>文本分类之CountVectorizer使用</title>
+    <link href="https://foochane.cn/article/2019090301.html"/>
+    <id>https://foochane.cn/article/2019090301.html</id>
+    <published>2019-09-03T04:53:00.000Z</published>
+    <updated>2020-04-28T05:13:01.567Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;CountVectorizer是属于常见的特征数值计算类，是一个文本特征提取方法。对于每一个训练文本，它只考虑每种词汇在该训练文本中出现的频率。&lt;br&gt;CountVectorizer会将文本中的词语转换为词频矩阵，它通过fit_transform函数计算各个词语出现的次数&lt;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="NLP" scheme="https://foochane.cn/categories/NLP/"/>
+    
+    
+      <category term="文本分类" scheme="https://foochane.cn/tags/%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>文本分类之TfidfVectorizer的使用</title>
+    <link href="https://foochane.cn/article/2019090201.html"/>
+    <id>https://foochane.cn/article/2019090201.html</id>
+    <published>2019-09-02T01:53:00.000Z</published>
+    <updated>2020-04-28T05:13:01.567Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;1-构造文本&quot;&gt;&lt;a href=&quot;#1-构造文本&quot; class=&quot;headerlink&quot; title=&quot;1 构造文本&quot;&gt;&lt;/a&gt;1 构造文本&lt;/h2&gt;&lt;div class=&quot;code-area-wrap&quot;&gt;&lt;div
+        
+      
+    
+    </summary>
+    
+    
+      <category term="NLP" scheme="https://foochane.cn/categories/NLP/"/>
+    
+    
+      <category term="文本分类" scheme="https://foochane.cn/tags/%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>文本分类之文本预处理</title>
+    <link href="https://foochane.cn/article/2019090101.html"/>
+    <id>https://foochane.cn/article/2019090101.html</id>
+    <published>2019-09-01T03:23:00.000Z</published>
+    <updated>2020-04-28T05:13:01.567Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;1-读取数据&quot;&gt;&lt;a href=&quot;#1-读取数据&quot; class=&quot;headerlink&quot; title=&quot;1 读取数据&quot;&gt;&lt;/a&gt;1 读取数据&lt;/h2&gt;&lt;div class=&quot;code-area-wrap&quot;&gt;&lt;div
+        
+      
+    
+    </summary>
+    
+    
+      <category term="NLP" scheme="https://foochane.cn/categories/NLP/"/>
+    
+    
+      <category term="文本分类" scheme="https://foochane.cn/tags/%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/"/>
+    
+  </entry>
+  
+</feed>
