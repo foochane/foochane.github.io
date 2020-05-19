@@ -467,6 +467,33 @@
   </entry>
   
   <entry>
+    <title>Java常见问题汇总</title>
+    <link href="https://foochane.cn/article/2019111501.html"/>
+    <id>https://foochane.cn/article/2019111501.html</id>
+    <published>2019-11-15T14:00:00.000Z</published>
+    <updated>2020-05-19T02:20:06.409Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;1-Java基础&quot;&gt;&lt;a href=&quot;#1-Java基础&quot; class=&quot;headerlink&quot; title=&quot;1 Java基础&quot;&gt;&lt;/a&gt;1 Java基础&lt;/h1&gt;&lt;h2 id=&quot;1-1-概念和语法&quot;&gt;&lt;a href=&quot;#1-1-概念和语法&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Springboot多模块Maven项目打包</title>
     <link href="https://foochane.cn/article/2019110801.html"/>
     <id>https://foochane.cn/article/2019110801.html</id>
@@ -535,33 +562,6 @@
         
         
           &lt;h2 id=&quot;1-TFIDF-逻辑回归&quot;&gt;&lt;a href=&quot;#1-TFIDF-逻辑回归&quot; class=&quot;headerlink&quot; title=&quot;1 TFIDF+逻辑回归&quot;&gt;&lt;/a&gt;1 TFIDF+逻辑回归&lt;/h2&gt;&lt;div class=&quot;code-area-wrap&quot;&gt;&lt;div
-        
-      
-    
-    </summary>
-    
-    
-      <category term="NLP" scheme="https://foochane.cn/categories/NLP/"/>
-    
-    
-      <category term="文本分类" scheme="https://foochane.cn/tags/%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>文本分类之CountVectorizer使用</title>
-    <link href="https://foochane.cn/article/2019090301.html"/>
-    <id>https://foochane.cn/article/2019090301.html</id>
-    <published>2019-09-03T04:53:00.000Z</published>
-    <updated>2020-04-28T05:13:01.567Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;CountVectorizer是属于常见的特征数值计算类，是一个文本特征提取方法。对于每一个训练文本，它只考虑每种词汇在该训练文本中出现的频率。&lt;br&gt;CountVectorizer会将文本中的词语转换为词频矩阵，它通过fit_transform函数计算各个词语出现的次数&lt;
         
       
     
