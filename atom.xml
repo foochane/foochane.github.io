@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://foochane.cn/"/>
-  <updated>2020-07-05T06:28:40.695Z</updated>
+  <updated>2020-07-05T06:40:27.555Z</updated>
   <id>https://foochane.cn/</id>
   
   <author>
@@ -17,11 +17,127 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>JVM笔记：运行时数据区-程序计数器（PC寄存器）</title>
+    <title>JVM笔记：运行时数据区-方法区</title>
+    <link href="https://foochane.cn/article/2020062601.html"/>
+    <id>https://foochane.cn/article/2020062601.html</id>
+    <published>2020-06-26T08:41:00.000Z</published>
+    <updated>2020-07-05T06:40:27.555Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;1-堆、栈、方法区的交互关系&quot;&gt;&lt;a href=&quot;#1-堆、栈、方法区的交互关系&quot; class=&quot;headerlink&quot; title=&quot;1. 堆、栈、方法区的交互关系&quot;&gt;&lt;/a&gt;1.
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/tags/Java/"/>
+    
+      <category term="JVM" scheme="https://foochane.cn/tags/JVM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JVM笔记：运行时数据区-堆</title>
+    <link href="https://foochane.cn/article/2020062601.html"/>
+    <id>https://foochane.cn/article/2020062601.html</id>
+    <published>2020-06-26T08:41:00.000Z</published>
+    <updated>2020-07-05T06:39:47.844Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;1-核心概述&quot;&gt;&lt;a href=&quot;#1-核心概述&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/tags/Java/"/>
+    
+      <category term="JVM" scheme="https://foochane.cn/tags/JVM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JVM笔记：运行时数据区-执行引擎</title>
+    <link href="https://foochane.cn/article/2020062601.html"/>
+    <id>https://foochane.cn/article/2020062601.html</id>
+    <published>2020-06-26T08:41:00.000Z</published>
+    <updated>2020-07-05T06:43:12.254Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;1-执行引擎概述&quot;&gt;&lt;a href=&quot;#1-执行引擎概述&quot; class=&quot;headerlink&quot; title=&quot;1 执行引擎概述&quot;&gt;&lt;/a&gt;1
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/tags/Java/"/>
+    
+      <category term="JVM" scheme="https://foochane.cn/tags/JVM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JVM笔记：运行时数据区-本地方法栈</title>
+    <link href="https://foochane.cn/article/2020061801.html"/>
+    <id>https://foochane.cn/article/2020061801.html</id>
+    <published>2020-06-18T11:21:00.000Z</published>
+    <updated>2020-07-05T06:37:54.913Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;1本地方法栈&quot;&gt;&lt;a href=&quot;#1本地方法栈&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/tags/Java/"/>
+    
+      <category term="JVM" scheme="https://foochane.cn/tags/JVM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JVM笔记：运行时数据区-虚拟机栈</title>
     <link href="https://foochane.cn/article/2020061701.html"/>
     <id>https://foochane.cn/article/2020061701.html</id>
     <published>2020-06-17T01:31:00.000Z</published>
-    <updated>2020-07-05T06:28:40.695Z</updated>
+    <updated>2020-07-05T06:37:43.816Z</updated>
     
     <summary type="html">
     
@@ -458,118 +574,6 @@
         
           &lt;!-- 
 &gt;[foochane](https://foochane.cn/) ：[https://foochane.cn/article/2019123002.html](https://foochane.cn/article/2019123002.html)
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Java" scheme="https://foochane.cn/categories/Java/"/>
-    
-    
-      <category term="Java" scheme="https://foochane.cn/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java学习笔记（四）：异常处理</title>
-    <link href="https://foochane.cn/article/2019123001.html"/>
-    <id>https://foochane.cn/article/2019123001.html</id>
-    <published>2019-12-30T04:05:00.000Z</published>
-    <updated>2020-04-28T05:13:01.559Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;!-- 
-&gt;[foochane](https://foochane.cn/) ：[https://foochane.cn/article/2019123001.html](https://foochane.cn/article/2019123001.html)
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Java" scheme="https://foochane.cn/categories/Java/"/>
-    
-    
-      <category term="Java" scheme="https://foochane.cn/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java学习笔记（三）：集合类与常用数据结构的典型用法</title>
-    <link href="https://foochane.cn/article/2019122801.html"/>
-    <id>https://foochane.cn/article/2019122801.html</id>
-    <published>2019-12-28T05:31:00.000Z</published>
-    <updated>2020-04-28T05:13:01.558Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;!-- 
-&gt;[foochane](https://foochane.cn/) ：[https://foochane.cn/article/2019122801.html](https://foochane.cn/article/2019122801.html)
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Java" scheme="https://foochane.cn/categories/Java/"/>
-    
-    
-      <category term="Java" scheme="https://foochane.cn/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java学习笔记（二）：常用API总结</title>
-    <link href="https://foochane.cn/article/2019122001.html"/>
-    <id>https://foochane.cn/article/2019122001.html</id>
-    <published>2019-12-20T13:21:18.000Z</published>
-    <updated>2020-04-28T05:13:01.557Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;!-- 
-&gt;[foochane](https://foochane.cn/) ：[https://foochane.cn/article/2019122001.html](https://foochane.cn/article/2019122001.html)
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Java" scheme="https://foochane.cn/categories/Java/"/>
-    
-    
-      <category term="Java" scheme="https://foochane.cn/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java学习笔记（一）：基础概念和语法</title>
-    <link href="https://foochane.cn/article/2019121501.html"/>
-    <id>https://foochane.cn/article/2019121501.html</id>
-    <published>2019-12-15T14:00:00.000Z</published>
-    <updated>2020-04-28T05:13:01.553Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;!-- 
-&gt;[foochane](https://foochane.cn/) ：[https://foochane.cn/article/2019121501.html](https://foochane.cn/article/2019121501.html)
         
       
     
