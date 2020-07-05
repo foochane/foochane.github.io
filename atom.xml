@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://foochane.cn/"/>
-  <updated>2020-06-16T06:14:20.444Z</updated>
+  <updated>2020-07-05T03:06:03.351Z</updated>
   <id>https://foochane.cn/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Java常见问题汇总</title>
-    <link href="https://foochane.cn/article/2020052501.html"/>
-    <id>https://foochane.cn/article/2020052501.html</id>
-    <published>2020-05-20T02:00:00.000Z</published>
-    <updated>2020-06-16T06:14:20.444Z</updated>
+    <title>JVM笔记：类加载子系统</title>
+    <link href="https://foochane.cn/article/2020061501.html"/>
+    <id>https://foochane.cn/article/2020061501.html</id>
+    <published>2020-06-15T07:36:00.000Z</published>
+    <updated>2020-07-05T03:06:03.351Z</updated>
     
     <summary type="html">
     
@@ -29,7 +29,7 @@
       
         
         
-          &lt;h1 id=&quot;1-Java基础&quot;&gt;&lt;a href=&quot;#1-Java基础&quot; class=&quot;headerlink&quot; title=&quot;1 Java基础&quot;&gt;&lt;/a&gt;1 Java基础&lt;/h1&gt;&lt;h2 id=&quot;1-1-基础概念&quot;&gt;&lt;a href=&quot;#1-1-基础概念&quot;
+          &lt;h2 id=&quot;1-内存结构概述&quot;&gt;&lt;a href=&quot;#1-内存结构概述&quot; class=&quot;headerlink&quot; title=&quot;1 内存结构概述&quot;&gt;&lt;/a&gt;1 内存结构概述&lt;/h2&gt;&lt;h3 id=&quot;1-1-结构图&quot;&gt;&lt;a href=&quot;#1-1-结构图&quot;
         
       
     
@@ -40,6 +40,38 @@
     
     
       <category term="Java" scheme="https://foochane.cn/tags/Java/"/>
+    
+      <category term="JVM" scheme="https://foochane.cn/tags/JVM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JVM笔记：JVM与Java体系结构</title>
+    <link href="https://foochane.cn/article/2020061001.html"/>
+    <id>https://foochane.cn/article/2020061001.html</id>
+    <published>2020-06-11T09:36:00.000Z</published>
+    <updated>2020-07-05T02:50:06.526Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;1-Java及字节码&quot;&gt;&lt;a href=&quot;#1-Java及字节码&quot; class=&quot;headerlink&quot; title=&quot;1 Java及字节码&quot;&gt;&lt;/a&gt;1 Java及字节码&lt;/h2&gt;&lt;p&gt;&lt;a name=&quot;uPkWJ&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/tags/Java/"/>
+    
+      <category term="JVM" scheme="https://foochane.cn/tags/JVM/"/>
     
   </entry>
   
@@ -545,33 +577,6 @@
     
     
       <category term="其他" scheme="https://foochane.cn/tags/%E5%85%B6%E4%BB%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>文本分类之常用方法总结</title>
-    <link href="https://foochane.cn/article/2019091501.html"/>
-    <id>https://foochane.cn/article/2019091501.html</id>
-    <published>2019-09-15T11:46:00.000Z</published>
-    <updated>2020-04-28T05:13:01.567Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;1-TFIDF-逻辑回归&quot;&gt;&lt;a href=&quot;#1-TFIDF-逻辑回归&quot; class=&quot;headerlink&quot; title=&quot;1 TFIDF+逻辑回归&quot;&gt;&lt;/a&gt;1 TFIDF+逻辑回归&lt;/h2&gt;&lt;div class=&quot;code-area-wrap&quot;&gt;&lt;div
-        
-      
-    
-    </summary>
-    
-    
-      <category term="NLP" scheme="https://foochane.cn/categories/NLP/"/>
-    
-    
-      <category term="文本分类" scheme="https://foochane.cn/tags/%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/"/>
     
   </entry>
   
