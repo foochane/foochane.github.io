@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://foochane.cn/"/>
-  <updated>2020-07-05T06:40:27.555Z</updated>
+  <updated>2020-07-05T06:46:11.047Z</updated>
   <id>https://foochane.cn/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>JVM笔记：运行时数据区-方法区</title>
-    <link href="https://foochane.cn/article/2020062601.html"/>
-    <id>https://foochane.cn/article/2020062601.html</id>
-    <published>2020-06-26T08:41:00.000Z</published>
-    <updated>2020-07-05T06:40:27.555Z</updated>
+    <title>JVM笔记：运行时数据区-执行引擎</title>
+    <link href="https://foochane.cn/article/2020062801.html"/>
+    <id>https://foochane.cn/article/2020062801.html</id>
+    <published>2020-06-28T11:51:00.000Z</published>
+    <updated>2020-07-05T06:46:11.047Z</updated>
     
     <summary type="html">
     
@@ -29,7 +29,7 @@
       
         
         
-          &lt;h2 id=&quot;1-堆、栈、方法区的交互关系&quot;&gt;&lt;a href=&quot;#1-堆、栈、方法区的交互关系&quot; class=&quot;headerlink&quot; title=&quot;1. 堆、栈、方法区的交互关系&quot;&gt;&lt;/a&gt;1.
+          &lt;h2 id=&quot;1-执行引擎概述&quot;&gt;&lt;a href=&quot;#1-执行引擎概述&quot; class=&quot;headerlink&quot; title=&quot;1 执行引擎概述&quot;&gt;&lt;/a&gt;1
         
       
     
@@ -75,11 +75,11 @@
   </entry>
   
   <entry>
-    <title>JVM笔记：运行时数据区-执行引擎</title>
+    <title>JVM笔记：运行时数据区-方法区</title>
     <link href="https://foochane.cn/article/2020062601.html"/>
     <id>https://foochane.cn/article/2020062601.html</id>
     <published>2020-06-26T08:41:00.000Z</published>
-    <updated>2020-07-05T06:43:12.254Z</updated>
+    <updated>2020-07-05T06:40:27.555Z</updated>
     
     <summary type="html">
     
@@ -87,7 +87,7 @@
       
         
         
-          &lt;h2 id=&quot;1-执行引擎概述&quot;&gt;&lt;a href=&quot;#1-执行引擎概述&quot; class=&quot;headerlink&quot; title=&quot;1 执行引擎概述&quot;&gt;&lt;/a&gt;1
+          &lt;h2 id=&quot;1-堆、栈、方法区的交互关系&quot;&gt;&lt;a href=&quot;#1-堆、栈、方法区的交互关系&quot; class=&quot;headerlink&quot; title=&quot;1. 堆、栈、方法区的交互关系&quot;&gt;&lt;/a&gt;1.
         
       
     
