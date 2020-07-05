@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://foochane.cn/"/>
-  <updated>2020-07-05T06:46:11.047Z</updated>
+  <updated>2020-07-05T06:59:37.371Z</updated>
   <id>https://foochane.cn/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://foochane.cn/article/2020062801.html"/>
     <id>https://foochane.cn/article/2020062801.html</id>
     <published>2020-06-28T11:51:00.000Z</published>
-    <updated>2020-07-05T06:46:11.047Z</updated>
+    <updated>2020-07-05T06:59:37.371Z</updated>
     
     <summary type="html">
     
@@ -46,11 +46,11 @@
   </entry>
   
   <entry>
-    <title>JVM笔记：运行时数据区-堆</title>
+    <title>JVM笔记：运行时数据区-方法区</title>
     <link href="https://foochane.cn/article/2020062601.html"/>
     <id>https://foochane.cn/article/2020062601.html</id>
-    <published>2020-06-26T08:41:00.000Z</published>
-    <updated>2020-07-05T06:39:47.844Z</updated>
+    <published>2020-06-26T14:44:00.000Z</published>
+    <updated>2020-07-05T07:09:20.004Z</updated>
     
     <summary type="html">
     
@@ -58,7 +58,7 @@
       
         
         
-          &lt;h2 id=&quot;1-核心概述&quot;&gt;&lt;a href=&quot;#1-核心概述&quot; class=&quot;headerlink&quot;
+          &lt;h2 id=&quot;1-堆、栈、方法区的交互关系&quot;&gt;&lt;a href=&quot;#1-堆、栈、方法区的交互关系&quot; class=&quot;headerlink&quot; title=&quot;1. 堆、栈、方法区的交互关系&quot;&gt;&lt;/a&gt;1.
         
       
     
@@ -75,11 +75,11 @@
   </entry>
   
   <entry>
-    <title>JVM笔记：运行时数据区-方法区</title>
-    <link href="https://foochane.cn/article/2020062601.html"/>
-    <id>https://foochane.cn/article/2020062601.html</id>
-    <published>2020-06-26T08:41:00.000Z</published>
-    <updated>2020-07-05T06:40:27.555Z</updated>
+    <title>JVM笔记：运行时数据区-堆</title>
+    <link href="https://foochane.cn/article/2020062501.html"/>
+    <id>https://foochane.cn/article/2020062501.html</id>
+    <published>2020-06-25T08:41:00.000Z</published>
+    <updated>2020-07-05T07:12:15.446Z</updated>
     
     <summary type="html">
     
@@ -87,7 +87,7 @@
       
         
         
-          &lt;h2 id=&quot;1-堆、栈、方法区的交互关系&quot;&gt;&lt;a href=&quot;#1-堆、栈、方法区的交互关系&quot; class=&quot;headerlink&quot; title=&quot;1. 堆、栈、方法区的交互关系&quot;&gt;&lt;/a&gt;1.
+          &lt;h2 id=&quot;1-核心概述&quot;&gt;&lt;a href=&quot;#1-核心概述&quot; class=&quot;headerlink&quot;
         
       
     
