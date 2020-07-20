@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://foochane.cn/"/>
-  <updated>2020-07-20T11:07:42.824Z</updated>
+  <updated>2020-07-20T11:11:18.592Z</updated>
   <id>https://foochane.cn/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Java/20200720-Java中深拷贝和浅拷贝</title>
-    <link href="https://foochane.cn/article/unnamed.html"/>
-    <id>https://foochane.cn/article/unnamed.html</id>
-    <published>2020-07-20T11:01:56.460Z</published>
-    <updated>2020-07-20T11:07:42.824Z</updated>
+    <title>JVM笔记：执行引擎</title>
+    <link href="https://foochane.cn/article/2020072001.html"/>
+    <id>https://foochane.cn/article/2020072001.html</id>
+    <published>2020-07-20T11:10:00.000Z</published>
+    <updated>2020-07-20T11:11:18.592Z</updated>
     
     <summary type="html">
     
@@ -36,6 +36,10 @@
     </summary>
     
     
+      <category term="Java" scheme="https://foochane.cn/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/tags/Java/"/>
     
   </entry>
   
