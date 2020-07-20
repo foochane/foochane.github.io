@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://foochane.cn/"/>
-  <updated>2020-07-18T16:28:00.602Z</updated>
+  <updated>2020-07-20T11:07:42.824Z</updated>
   <id>https://foochane.cn/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java/20200720-Java中深拷贝和浅拷贝</title>
+    <link href="https://foochane.cn/article/unnamed.html"/>
+    <id>https://foochane.cn/article/unnamed.html</id>
+    <published>2020-07-20T11:01:56.460Z</published>
+    <updated>2020-07-20T11:07:42.824Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;1-Java中对象的创建&quot;&gt;&lt;a href=&quot;#1-Java中对象的创建&quot; class=&quot;headerlink&quot; title=&quot;1 Java中对象的创建&quot;&gt;&lt;/a&gt;1
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>JVM笔记：执行引擎</title>
@@ -545,34 +568,6 @@
         
           &lt;!-- 
 &gt;[foochane](https://foochane.cn/) ：[https://foochane.cn/article/2019123101.html](https://foochane.cn/article/2019123101.html)
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Java" scheme="https://foochane.cn/categories/Java/"/>
-    
-    
-      <category term="Java" scheme="https://foochane.cn/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java学习笔记（五）：线程</title>
-    <link href="https://foochane.cn/article/2019123002.html"/>
-    <id>https://foochane.cn/article/2019123002.html</id>
-    <published>2019-12-30T07:48:00.000Z</published>
-    <updated>2020-04-28T05:13:01.558Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;!-- 
-&gt;[foochane](https://foochane.cn/) ：[https://foochane.cn/article/2019123002.html](https://foochane.cn/article/2019123002.html)
         
       
     
