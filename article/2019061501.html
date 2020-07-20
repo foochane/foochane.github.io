@@ -106,7 +106,7 @@ function activateLightMode(){
 <li>16 安装福昕PDF阅读器</li>
 </ul>
 <h2 id="01-设置root密码"><a href="#01-设置root密码" class="headerlink" title="01 设置root密码"></a>01 设置root密码</h2><p>使用命令：<code>$ sudo su</code>，然后执行<code>#passwd</code>,设置密码。</p>
-<p><a href="https://foochane.cn/images/2019/009.png" data-fancybox="group" data-caption class="fancybox"><img alt title data-src="https://foochane.cn/images/2019/009.png" class="lazyload"></a></p>
+<p><a href="https://foochane.cn/images/2019/009.png" data-fancybox="group" data-caption class="fancybox"><img alt data-src="https://foochane.cn/images/2019/009.png" class="lazyload" title></a></p>
 <h2 id="02-更换国内源"><a href="#02-更换国内源" class="headerlink" title="02 更换国内源"></a>02 更换国内源</h2><h3 id="2-1-备份-etc-apt-sources-list"><a href="#2-1-备份-etc-apt-sources-list" class="headerlink" title="2.1 备份/etc/apt/sources.list"></a>2.1 备份/etc/apt/sources.list</h3><p><code>$ sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak</code></p>
 <h3 id="2-2-更换源"><a href="#2-2-更换源" class="headerlink" title="2.2 更换源"></a>2.2 更换源</h3><p>源地址：</p>
 <ul>
@@ -122,7 +122,7 @@ function activateLightMode(){
 
 <h2 id="03-将电脑上的其他盘挂载ubuntu下"><a href="#03-将电脑上的其他盘挂载ubuntu下" class="headerlink" title="03 将电脑上的其他盘挂载ubuntu下"></a>03 将电脑上的其他盘挂载ubuntu下</h2><p>如果电脑上除了系统盘（安装linux的盘）以外还有其他盘，可以把其他盘挂载到linux系统的<code>/mnt/</code>目录下，方便命令访问。</p>
 <h3 id="3-1-查看磁盘"><a href="#3-1-查看磁盘" class="headerlink" title="3.1 查看磁盘"></a>3.1 查看磁盘</h3><p>命令:<code>sudo fdisk -l</code></p>
-<p><a href="https://foochane.cn/images/2019/010.png" data-fancybox="group" data-caption class="fancybox"><img alt title data-src="https://foochane.cn/images/2019/010.png" class="lazyload"></a></p>
+<p><a href="https://foochane.cn/images/2019/010.png" data-fancybox="group" data-caption class="fancybox"><img alt data-src="https://foochane.cn/images/2019/010.png" class="lazyload" title></a></p>
 <p>所以，这里我们将<code>/dev/sda5</code>挂载到，<code>/mnt</code>下。</p>
 <h3 id="3-2-挂载"><a href="#3-2-挂载" class="headerlink" title="3.2 挂载"></a>3.2 挂载</h3><p>使用命令命令：<code>$ sudo mount /dev/sda5  /mnt</code><br>或者  <code>$  sudo mount -t ntfs /dev/sda5 /mnt -o iocharset=utf8,umask=0</code></p>
 <p>如果要取消挂载：<code>$ sudo umount /dev/sda5</code></p>
