@@ -89,7 +89,7 @@ function activateLightMode(){
 <ol>
 <li><p>基本数据类型和引用类型定义</p>
 <p> 基本数据类：Java 中有八种基本数据类型“byte、short、int、long、float、double、char、boolean”</p>
-<p> 引用类型：类、数组和解控</p>
+<p> 引用类型：类、数组和接口</p>
 </li>
 <li><p>基本数据类型和引用类型在内存中的存储方式</p>
 <p>基本数据类型：存放在栈内存中，用完就消失。</p>
@@ -98,7 +98,7 @@ function activateLightMode(){
 <li><p>基本类型、引用类型内存简单说明图</p>
 </li>
 </ol>
-<p><a href="https://foochane.cn/images/2020/099.png" data-fancybox="group" data-caption class="fancybox"><img alt data-src="https://foochane.cn/images/2020/099.png" class="lazyload" title></a></p>
+<p><a href="https://foochane.cn/images/2020/099.png" data-fancybox="group" data-caption class="fancybox"><img alt title data-src="https://foochane.cn/images/2020/099.png" class="lazyload"></a></p>
 <blockquote>
 <p>关于Java中String类：String类是一个特殊的类，它属于引用数据类型。String内部类的value数组定义成了private final，因此是一个不可修改类，它不能像正常类对象一样直接修改，所以如果需要修改的时候，需要重新开辟空间赋值。但是在使用的过程中String看上去更像是基本数据类型，存的是常量池中的地址。</p>
 </blockquote>
@@ -109,19 +109,19 @@ function activateLightMode(){
 <li><code>int[] arr = {1,2,3}</code> ：int[]型数据arr，在堆中建立数组对象int[3]，并且赋值1，2，3，然后将数组的地址放回给虚拟机栈中的arr</li>
 <li><code>Person person = new Person(“小王”，20)</code> ：Person对象，同样在堆中建立对象，在常量池中新建常量，给name赋值为常量池中的地址，age初始化为20，然后对象地址返回给虚拟机栈中的person。</li>
 </ul>
-<p><a href="https://foochane.cn/images/2020/097.png" data-fancybox="group" data-caption class="fancybox"><img alt data-src="https://foochane.cn/images/2020/097.png" class="lazyload" title></a></p>
+<p><a href="https://foochane.cn/images/2020/097.png" data-fancybox="group" data-caption class="fancybox"><img alt title data-src="https://foochane.cn/images/2020/097.png" class="lazyload"></a></p>
 <p>接着执行pass方法，执行过程如下：</p>
 <ul>
 <li><code>a = 2</code>：相当于在栈中新建一个变量a（与main方法里的同名），然后赋值为2。</li>
-<li><code>a = 2</code> ：在栈中新建一个字符串变量str（与main方法里的同名），同样在字符串常量池中判断是否有字符串”pass”，没有则新建一个，把地址返回给虚拟机栈中的str。</li>
+<li>`str = “pass” ：在栈中新建一个字符串变量str（与main方法里的同名），同样在字符串常量池中判断是否有字符串”pass”，没有则新建一个，把地址返回给虚拟机栈中的str。</li>
 <li><code>arr[0]= -1</code> ：这里传给pass方法里的就是arr存在堆中的地址，所以修改的就是实际堆中的数据。</li>
 <li><code>person.setName(&quot;老王&quot;)&quot; 和&quot;person.setName(&quot;老王&quot;)</code> ：和修改数组类似，同样是修改了堆中的数据。</li>
 </ul>
-<p><a href="https://foochane.cn/images/2020/098.png" data-fancybox="group" data-caption class="fancybox"><img alt data-src="https://foochane.cn/images/2020/098.png" class="lazyload" title></a></p>
-<p>在pass方法执行的过程中传入的形参a和str是没有使用过的，IDEA里面也可以看出：<br><a href="https://foochane.cn/images/2020/101.png" data-fancybox="group" data-caption="image-20200721162307153" class="fancybox"><img alt="image-20200721162307153" data-src="https://foochane.cn/images/2020/101.png" class="lazyload" title="image-20200721162307153"></a></p>
+<p><a href="https://foochane.cn/images/2020/098.png" data-fancybox="group" data-caption class="fancybox"><img alt title data-src="https://foochane.cn/images/2020/098.png" class="lazyload"></a></p>
+<p>在pass方法执行的过程中传入的形参a和str是没有使用过的，IDEA里面也可以看出：<br><a href="https://foochane.cn/images/2020/101.png" data-fancybox="group" data-caption="image-20200721162307153" class="fancybox"><img alt="image-20200721162307153" title="image-20200721162307153" data-src="https://foochane.cn/images/2020/101.png" class="lazyload"></a></p>
 <p>当执行完pass方法后，pass方法出栈，这时main方法中的a和str并没有改变，但是arr和person所指向的两个对象在堆中已经发生了改变。</p>
-<p><a href="https://foochane.cn/images/2020/100.png" data-fancybox="group" data-caption class="fancybox"><img alt data-src="https://foochane.cn/images/2020/100.png" class="lazyload" title></a></p>
-<h2 id="5-总结"><a href="#5-总结" class="headerlink" title="5 总结"></a>5 总结</h2><p><strong>无论是基本类型和是引用类型，在实参传入形参时，都是值传递，也就是说传递的都是一个副本，而不是内容本身。所以Java是值传递。</strong></p>
+<p><a href="https://foochane.cn/images/2020/100.png" data-fancybox="group" data-caption class="fancybox"><img alt title data-src="https://foochane.cn/images/2020/100.png" class="lazyload"></a></p>
+<h2 id="5-总结"><a href="#5-总结" class="headerlink" title="5 总结"></a>5 总结</h2><p><strong>无论是基本类型和是引用类型，在实参传入形参时，都是值传递，也就是说传递的都是一个副本，而不是内容本身，所以Java是值传递。</strong></p>
 <blockquote>
 <p>参考：<a href="https://blog.csdn.net/xu892278564/article/details/86217752" target="_blank" rel="noopener">https://blog.csdn.net/xu892278564/article/details/86217752</a></p>
 </blockquote>
