@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://foochane.cn/"/>
-  <updated>2020-07-20T12:46:11.493Z</updated>
+  <updated>2020-07-21T08:29:32.821Z</updated>
   <id>https://foochane.cn/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java是值传递还引用传递</title>
+    <link href="https://foochane.cn/article/2020072101.html"/>
+    <id>https://foochane.cn/article/2020072101.html</id>
+    <published>2020-07-21T08:20:00.000Z</published>
+    <updated>2020-07-21T08:29:32.821Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;1-代码示例&quot;&gt;&lt;a href=&quot;#1-代码示例&quot; class=&quot;headerlink&quot; title=&quot;1 代码示例&quot;&gt;&lt;/a&gt;1
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Java中的深拷贝和浅拷贝</title>
@@ -544,34 +571,6 @@
         
           &lt;!-- 
 &gt;[foochane](https://foochane.cn/) ：[https://foochane.cn/article/2020010101.html](https://foochane.cn/article/2020010101.html)
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Java" scheme="https://foochane.cn/categories/Java/"/>
-    
-    
-      <category term="Java" scheme="https://foochane.cn/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java学习笔记（六）：Lambda表达式</title>
-    <link href="https://foochane.cn/article/2019123101.html"/>
-    <id>https://foochane.cn/article/2019123101.html</id>
-    <published>2019-12-31T07:22:00.000Z</published>
-    <updated>2020-04-28T05:13:01.559Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;!-- 
-&gt;[foochane](https://foochane.cn/) ：[https://foochane.cn/article/2019123101.html](https://foochane.cn/article/2019123101.html)
         
       
     
