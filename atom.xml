@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://foochane.cn/"/>
-  <updated>2020-07-21T08:37:58.932Z</updated>
+  <updated>2020-07-26T07:30:07.566Z</updated>
   <id>https://foochane.cn/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java容器：ArrayList源码分析</title>
+    <link href="https://foochane.cn/article/2020072601.html"/>
+    <id>https://foochane.cn/article/2020072601.html</id>
+    <published>2020-07-26T02:48:00.000Z</published>
+    <updated>2020-07-26T07:30:07.566Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;注意以下源码分析基于JDK 1.8&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;1-基本定义及构造方法&quot;&gt;&lt;a href=&quot;#1-基本定义及构造方法&quot; class=&quot;headerlink&quot; title=&quot;1
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="https://foochane.cn/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Java是值传递还引用传递</title>
@@ -543,34 +573,6 @@
         
           &lt;!-- 
 &gt;[foochane](https://foochane.cn/) ：[https://foochane.cn/article/2020010201.html](https://foochane.cn/article/2020010201.html)
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Java" scheme="https://foochane.cn/categories/Java/"/>
-    
-    
-      <category term="Java" scheme="https://foochane.cn/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java学习笔记（七）：字节流和字符流</title>
-    <link href="https://foochane.cn/article/2020010101.html"/>
-    <id>https://foochane.cn/article/2020010101.html</id>
-    <published>2020-01-01T03:05:00.000Z</published>
-    <updated>2020-04-28T05:13:01.559Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;!-- 
-&gt;[foochane](https://foochane.cn/) ：[https://foochane.cn/article/2020010101.html](https://foochane.cn/article/2020010101.html)
         
       
     
