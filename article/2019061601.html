@@ -1,0 +1,140 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>ssh-key生成密钥及SSH无密码登录的配置 | foochane</title><meta name="description" content="ssh-key生成密钥及SSH无密码登录的配置"><meta name="keywords" content="linux,git,ssh"><meta name="author" content="foochane"><meta name="copyright" content="foochane"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/images/site/favicon.png"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="https://hm.baidu.com"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="ssh-key生成密钥及SSH无密码登录的配置"><meta name="twitter:description" content="ssh-key生成密钥及SSH无密码登录的配置"><meta name="twitter:image" content="https://foochane.cn/images/cover/12.jpg"><meta property="og:type" content="article"><meta property="og:title" content="ssh-key生成密钥及SSH无密码登录的配置"><meta property="og:url" content="https://foochane.cn/article/2019061601"><meta property="og:site_name" content="foochane"><meta property="og:description" content="ssh-key生成密钥及SSH无密码登录的配置"><meta property="og:image" content="https://foochane.cn/images/cover/12.jpg"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
+
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="https://foochane.cn/article/2019061601"><link rel="prev" title="MySQL常用操作记录" href="https://foochane.cn/article/2019062401.html"><link rel="next" title="Ubuntu安装后的基本配置及常用软件的安装" href="https://foochane.cn/article/2019061501.html"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?e75706f2332bc6bbea2cc9a3372553f0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  baiduPush: true,
+  isHome: false,
+  isPost: true
+  
+}</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="foochane" type="application/atom+xml">
+</head><body><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">foochane</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></span><span class="pull_right" id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/images/site/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">60</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">23</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">8</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">目录</div><div class="sidebar-toc__content"><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#1-ssh-keygen命令"><span class="toc_mobile_items-text">1 ssh-keygen命令</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#2-ssh设置无密码登录服务器"><span class="toc_mobile_items-text">2 ssh设置无密码登录服务器</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#3-设置ssh无密码访问git仓库"><span class="toc_mobile_items-text">3 设置ssh无密码访问git仓库</span></a></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="color"></div><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-ssh-keygen命令"><span class="toc-text">1 ssh-keygen命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-ssh设置无密码登录服务器"><span class="toc-text">2 ssh设置无密码登录服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-设置ssh无密码访问git仓库"><span class="toc-text">3 设置ssh无密码访问git仓库</span></a></li></ol></div></div></div><main id="content-outer"><div id="top-container" style="background-image: url(/images/banner/0.jpg)"><div id="post-info"><div id="post-title"><div class="posttitle">ssh-key生成密钥及SSH无密码登录的配置</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2019-06-16</time><span class="post-meta__separator">|</span><span><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/linux/">linux</a></span><div class="post-meta-wordcount"><i class="fa fa-file-word-o post-meta__icon fa-fw" aria-hidden="true"></i><span>字数总计:</span><span class="word-count">772</span><span class="post-meta__separator">|</span><i class="fa fa-clock-o post-meta__icon fa-fw" aria-hidden="true"></i><span>阅读时长: 3 分钟</span><div class="post-meta-pv-cv"><span class="post-meta__separator">|</span><span><i class="fa fa-eye post-meta__icon fa-fw" aria-hidden="true"> </i>阅读量:</span><span id="busuanzi_value_page_pv"></span><span class="post-meta__separator">|</span><i class="fa fa-comments-o post-meta__icon fa-fw" aria-hidden="true"></i><span>评论数:</span><a href="/article/2019061601.html#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/article/2019061601.html" itemprop="commentCount"></span></a></div></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><blockquote>
+<p>SSH连接 ssh-key生成秘钥 无密码登录服务器 无密码访问git仓库</p>
+</blockquote>
+<!-- 
+文章作者：[foochane](https://foochane.cn/) 
+
+原文链接：[https://foochane.cn/article/2019061601.html](https://foochane.cn/article/2019061601.html)  
+-->
+
+
+
+
+<h2 id="1-ssh-keygen命令"><a href="#1-ssh-keygen命令" class="headerlink" title="1 ssh-keygen命令"></a>1 ssh-keygen命令</h2><p><code>ssh-keygen</code>命令说明：</p>
+<ul>
+<li>-t ：指定加密类型（如：rea,dsa)</li>
+<li>-C : 指定注释,用于识别这个密钥</li>
+</ul>
+<p>其他参数具体可以查看帮助</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen <span class="built_in">help</span></span><br><span class="line">Too many arguments.</span><br><span class="line">usage: ssh-keygen [-q] [-b bits] [-t dsa | ecdsa | ed25519 | rsa]</span><br><span class="line">                  [-N new_passphrase] [-C comment] [-f output_keyfile]</span><br><span class="line">       ssh-keygen -p [-P old_passphrase] [-N new_passphrase] [-f keyfile]</span><br><span class="line">       ssh-keygen -i [-m key_format] [-f input_keyfile]</span><br><span class="line">       ssh-keygen -e [-m key_format] [-f input_keyfile]</span><br><span class="line">       ssh-keygen -y [-f input_keyfile]</span><br><span class="line">       ssh-keygen -c [-P passphrase] [-C comment] [-f keyfile]</span><br><span class="line">       ssh-keygen -l [-v] [-E fingerprint_hash] [-f input_keyfile]</span><br><span class="line">       ssh-keygen -B [-f input_keyfile]</span><br><span class="line">       ssh-keygen -F hostname [-f known_hosts_file] [-l]</span><br><span class="line">       ssh-keygen -H [-f known_hosts_file]</span><br><span class="line">       ssh-keygen -R hostname [-f known_hosts_file]</span><br><span class="line">       ssh-keygen -r hostname [-f input_keyfile] [-g]</span><br><span class="line">       ssh-keygen -G output_file [-v] [-b bits] [-M memory] [-S start_point]</span><br><span class="line">       ssh-keygen -T output_file -f input_file [-v] [-a rounds] [-J num_lines]</span><br><span class="line">                  [-j start_line] [-K checkpt] [-W generator]</span><br><span class="line">       ssh-keygen -s ca_key -I certificate_identity [-h] [-U]</span><br><span class="line">                  [-D pkcs11_provider] [-n principals] [-O option]</span><br><span class="line">                  [-V validity_interval] [-z serial_number] file ...</span><br><span class="line">       ssh-keygen -L [-f input_keyfile]</span><br><span class="line">       ssh-keygen -A</span><br><span class="line">       ssh-keygen -k -f krl_file [-u] [-s ca_public] [-z version_number]</span><br><span class="line">                  file ...</span><br><span class="line">       ssh-keygen -Q -f krl_file file ...</span><br></pre></td></tr></table></figure></div>
+<p>实际情况中也用不到那么多参数，指定加密类型和注释即可。<br>例如：</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C <span class="string">"myname@163.com"</span></span><br><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file <span class="keyword">in</span> <span class="built_in">which</span> to save the key (C:\Users\fucheng/.ssh/id_rsa):</span><br><span class="line">Enter passphrase (empty <span class="keyword">for</span> no passphrase):</span><br><span class="line">Enter same passphrase again:</span><br><span class="line">Your identification has been saved <span class="keyword">in</span> C:\Users\fucheng/.ssh/id_rsa.</span><br><span class="line">Your public key has been saved <span class="keyword">in</span> C:\Users\fucheng/.ssh/id_rsa.pub.</span><br><span class="line">The key fingerprint is:</span><br><span class="line">SHA256:9OlHGn5uIlELfGIYXdWectiEV5XS2quWpD1qpd2QJC8 myname@163.com</span><br><span class="line">The key<span class="string">'s randomart image is:</span></span><br><span class="line"><span class="string">+---[RSA 2048]----+</span></span><br><span class="line"><span class="string">|       . ....o..=|</span></span><br><span class="line"><span class="string">|      . .   ..+o |</span></span><br><span class="line"><span class="string">|       +.    *+. |</span></span><br><span class="line"><span class="string">|      ..=.oooo=. |</span></span><br><span class="line"><span class="string">|       .S=+.=o. .|</span></span><br><span class="line"><span class="string">|        .o.E * . |</span></span><br><span class="line"><span class="string">|         .+ @ =  |</span></span><br><span class="line"><span class="string">|        . .B.B . |</span></span><br><span class="line"><span class="string">|         ..++ .  |</span></span><br><span class="line"><span class="string">+----[SHA256]-----+</span></span><br></pre></td></tr></table></figure></div>
+<p>一般情况下不需要输入密码，直接回车即可。</p>
+<p>执行完<code>ssh-keygen</code>之后会在，用户目录下的<code>.ssh</code>文件下，生成一个<code>id_rsa</code>文件和<code>id_rsa.pub</code>文件。</p>
+<ul>
+<li><code>id_rsa</code>文件是私钥，要保存好，放在本地，私钥可以生产公钥，反之不行。</li>
+<li><code>id_rsa.pub</code>文件是公钥，可以用于发送到其他服务器，或者git上。</li>
+</ul>
+<h2 id="2-ssh设置无密码登录服务器"><a href="#2-ssh设置无密码登录服务器" class="headerlink" title="2 ssh设置无密码登录服务器"></a>2 ssh设置无密码登录服务器</h2><p>将之前在本地生成的公钥<code>id_rsa.pub</code>,发送到需要无密码登录的服务器，然后将<code>id_rsa.pub</code>的内容追加到服务器的<code>~/.ssh/authorized_keys</code>文件中即可。</p>
+<p>如果没有.ssh目录，创建一个就好，或者执行<code>ssh localhost</code>登录本地，ssh会自动创建。</p>
+<p>可以使用如下命令进行操作：</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">bash</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure></div>
+
+<p>另外如果想要无密码登录本地localhost，那么在本地执行上面的命令即可，执行之后再 <code>ssh localhost</code> 就不需要输入密码了。</p>
+<p><strong>使用 ssh-copy-id命令</strong></p>
+<p>使用 <code>ssh-copy-id 主机名@IP</code>可以直接完成以上两步的操作。</p>
+<h2 id="3-设置ssh无密码访问git仓库"><a href="#3-设置ssh无密码访问git仓库" class="headerlink" title="3 设置ssh无密码访问git仓库"></a>3 设置ssh无密码访问git仓库</h2><p>注意这里访问的主要是私有仓库。</p>
+<p>以<code>github</code>为例，找到个人主页，点击<code>[settings]</code>,找到<code>[SSH and GPG keys]</code> ，新建<code>SSH keys</code>,将本地<code>id_rsa.pub</code>的内容复制到<code>key</code>里面，<code>tittle</code>可以随便填写，这样就配置好了。</p>
+<p>找到要访问的仓库主页，点击<code>Clone or Download</code> 将<code>use Http</code>换成<code>use SSH</code>,然后就会显示对应的仓库地址如：<code>git@github.com:uername/xxxxx.git</code></p>
+<p>使用该地址就可以在本地进行无密码访问仓库了。</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">foochane</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://foochane.cn/article/2019061601.html">https://foochane.cn/article/2019061601.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://foochane.cn">foochane</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/linux/">linux    </a><a class="post-meta__tags" href="/tags/git/">git    </a><a class="post-meta__tags" href="/tags/ssh/">ssh    </a></div><div class="post_share"><div class="social-share" data-image="/images/cover/12.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><a class="reward-button button--primary button--animated"> <i class="fa fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="lazyload post-qr-code__img" src="/images/site/reward/wechat.png" alt="微信"><div class="post-qr-code__desc">微信</div></li><li class="reward-item"><img class="lazyload post-qr-code__img" src="/images/site/reward/alipay.png" alt="支付宝"><div class="post-qr-code__desc">支付宝</div></li></ul></div></a></div><nav class="pagination_post" id="pagination"><div class="prev-post pull_left"><a href="/article/2019062401.html"><img class="prev_cover lazyload" data-src="/images/cover/10.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="label">上一篇</div><div class="prev_info"><span>MySQL常用操作记录</span></div></a></div><div class="next-post pull_right"><a href="/article/2019061501.html"><img class="next_cover lazyload" data-src="/images/cover/12.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>Ubuntu安装后的基本配置及常用软件的安装</span></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="https://foochane.cn/article/2019061501.html" title="Ubuntu安装后的基本配置及常用软件的安装"><img class="relatedPosts_cover lazyload"data-src="/images/cover/12.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2019-06-15</div><div class="relatedPosts_title">Ubuntu安装后的基本配置及常用软件的安装</div></div></a></div></div><div class="clear_both"></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var notify = true == true ? true : false;
+var verify = false == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'zCeKCftRr91sIth6b8UsWKb9-gzGzoHsz',
+  appKey:'SIMyV1MuzsbUpvUErd6bUlC2',
+  placeholder:'Please leave your footprints',
+  avatar:'monsterid',
+  guest_info:guest_info,
+  pageSize:'10',
+  lang:'zh-cn',
+  recordIP: true
+});</script></div></div></main><footer id="footer" style="background-image: url(/images/banner/0.jpg)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2022 By foochane</div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-list-ul close" id="mobile-toc-button" title="目录" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async=""></script><script src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/click_heart.js"></script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

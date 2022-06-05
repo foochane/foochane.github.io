@@ -1,0 +1,182 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>文本分类之TfidfVectorizer的使用 | foochane</title><meta name="description" content="文本分类之TfidfVectorizer的使用"><meta name="keywords" content="文本分类"><meta name="author" content="foochane"><meta name="copyright" content="foochane"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/images/site/favicon.png"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="https://hm.baidu.com"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="文本分类之TfidfVectorizer的使用"><meta name="twitter:description" content="文本分类之TfidfVectorizer的使用"><meta name="twitter:image" content="https://foochane.cn/images/cover/4.jpg"><meta property="og:type" content="article"><meta property="og:title" content="文本分类之TfidfVectorizer的使用"><meta property="og:url" content="https://foochane.cn/article/2019090201"><meta property="og:site_name" content="foochane"><meta property="og:description" content="文本分类之TfidfVectorizer的使用"><meta property="og:image" content="https://foochane.cn/images/cover/4.jpg"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
+
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="https://foochane.cn/article/2019090201"><link rel="prev" title="文本分类之CountVectorizer使用" href="https://foochane.cn/article/2019090301.html"><link rel="next" title="文本分类之文本预处理" href="https://foochane.cn/article/2019090101.html"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?e75706f2332bc6bbea2cc9a3372553f0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  baiduPush: true,
+  isHome: false,
+  isPost: true
+  
+}</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="foochane" type="application/atom+xml">
+</head><body><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">foochane</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></span><span class="pull_right" id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/images/site/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">60</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">23</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">8</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">目录</div><div class="sidebar-toc__content"><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#1-构造文本"><span class="toc_mobile_items-text">1 构造文本</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#2-文本分词"><span class="toc_mobile_items-text">2 文本分词</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#3-使用TfidfVectorizer构建模型"><span class="toc_mobile_items-text">3 使用TfidfVectorizer构建模型</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#4-获取tf-idf矩阵"><span class="toc_mobile_items-text">4 获取tf-idf矩阵</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#4-1-矩阵的shape"><span class="toc_mobile_items-text">4.1 矩阵的shape</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#4-2-查看矩阵的内容"><span class="toc_mobile_items-text">4.2 查看矩阵的内容</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#5-TfidfVectorizer的参数说明"><span class="toc_mobile_items-text">5 TfidfVectorizer的参数说明</span></a></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="color"></div><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-构造文本"><span class="toc-text">1 构造文本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-文本分词"><span class="toc-text">2 文本分词</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-使用TfidfVectorizer构建模型"><span class="toc-text">3 使用TfidfVectorizer构建模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-获取tf-idf矩阵"><span class="toc-text">4 获取tf-idf矩阵</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-矩阵的shape"><span class="toc-text">4.1 矩阵的shape</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-查看矩阵的内容"><span class="toc-text">4.2 查看矩阵的内容</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-TfidfVectorizer的参数说明"><span class="toc-text">5 TfidfVectorizer的参数说明</span></a></li></ol></div></div></div><main id="content-outer"><div id="top-container" style="background-image: url(/images/cover/4.jpg)"><div id="post-info"><div id="post-title"><div class="posttitle">文本分类之TfidfVectorizer的使用</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2019-09-02</time><span class="post-meta__separator">|</span><span><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/NLP/">NLP</a></span><div class="post-meta-wordcount"><i class="fa fa-file-word-o post-meta__icon fa-fw" aria-hidden="true"></i><span>字数总计:</span><span class="word-count">1.1k</span><span class="post-meta__separator">|</span><i class="fa fa-clock-o post-meta__icon fa-fw" aria-hidden="true"></i><span>阅读时长: 4 分钟</span><div class="post-meta-pv-cv"><span class="post-meta__separator">|</span><span><i class="fa fa-eye post-meta__icon fa-fw" aria-hidden="true"> </i>阅读量:</span><span id="busuanzi_value_page_pv"></span><span class="post-meta__separator">|</span><i class="fa fa-comments-o post-meta__icon fa-fw" aria-hidden="true"></i><span>评论数:</span><a href="/article/2019090201.html#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/article/2019090201.html" itemprop="commentCount"></span></a></div></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h2 id="1-构造文本"><a href="#1-构造文本" class="headerlink" title="1 构造文本"></a>1 构造文本</h2><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">python</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">text = [<span class="string">'机器学习是人工智能的一个分支。'</span>,</span><br><span class="line">        <span class="string">'机器学习是对能通过经验自动改进的计算机算法的研究。'</span>,</span><br><span class="line">        <span class="string">'机器学习是实现人工智能的一个途径，即以机器学习为手段解决人工智能中的问题。'</span>]</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="2-文本分词"><a href="#2-文本分词" class="headerlink" title="2 文本分词"></a>2 文本分词</h2><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">python</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba</span><br><span class="line"><span class="comment"># text_split = [''.join(i) for i in [jieba.cut(t) for t in text]]</span></span><br><span class="line"></span><br><span class="line">text_split = []</span><br><span class="line">jieba.enable_parallel(<span class="number">64</span>) <span class="comment">#并行分词开启</span></span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> text:</span><br><span class="line">    tmp = jieba.cut(t) </span><br><span class="line">    tmp_split = [<span class="string">''</span>.join(i) <span class="keyword">for</span> i <span class="keyword">in</span> tmp]</span><br><span class="line">    split = <span class="string">' '</span>.join(i <span class="keyword">for</span> i <span class="keyword">in</span> tmp_split)</span><br><span class="line">    text_split.append(split)</span><br></pre></td></tr></table></figure></div>
+
+<pre><code>Building prefix dict from the default dictionary ...
+Loading model from cache /tmp/jieba.cache
+Loading model cost 0.718 seconds.
+Prefix dict has been built succesfully.</code></pre><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">python</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">print(text_split)</span><br></pre></td></tr></table></figure></div>
+
+<pre><code>[&apos;机器 学习 是 人工智能 的 一个 分支 。&apos;, &apos;机器 学习 是 对 能 通过 经验 自动 改进 的 计算机 算法 的 研究 。&apos;, &apos;机器 学习 是 实现 人工智能 的 一个 途径 ， 即以 机器 学习 为 手段 解决 人工智能 中 的 问题 。&apos;]</code></pre><h2 id="3-使用TfidfVectorizer构建模型"><a href="#3-使用TfidfVectorizer构建模型" class="headerlink" title="3 使用TfidfVectorizer构建模型"></a>3 使用TfidfVectorizer构建模型</h2><p>构建模型</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">python</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.feature_extraction.text <span class="keyword">import</span> TfidfVectorizer</span><br><span class="line">tfvector = TfidfVectorizer()</span><br><span class="line">model = tfvector.fit(text_split)</span><br></pre></td></tr></table></figure></div>
+<p>查看提取的特征词</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">python</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">print(<span class="string">"提取的特征词:"</span> + str(model.get_feature_names()))</span><br></pre></td></tr></table></figure></div>
+
+<pre><code>提取的特征词:[&apos;一个&apos;, &apos;人工智能&apos;, &apos;分支&apos;, &apos;即以&apos;, &apos;学习&apos;, &apos;实现&apos;, &apos;手段&apos;, &apos;改进&apos;, &apos;机器&apos;, &apos;研究&apos;, &apos;算法&apos;, &apos;经验&apos;, &apos;自动&apos;, &apos;解决&apos;, &apos;计算机&apos;, &apos;途径&apos;, &apos;通过&apos;, &apos;问题&apos;]</code></pre><p>查看特征词和索引</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">python</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">print(<span class="string">"特征词和索引:"</span> + str(model.vocabulary_))</span><br></pre></td></tr></table></figure></div>
+
+<pre><code>特征词和索引:{&apos;机器&apos;: 8, &apos;学习&apos;: 4, &apos;人工智能&apos;: 1, &apos;一个&apos;: 0, &apos;分支&apos;: 2, &apos;通过&apos;: 16, &apos;经验&apos;: 11, &apos;自动&apos;: 12, &apos;改进&apos;: 7, &apos;计算机&apos;: 14, &apos;算法&apos;: 10, &apos;研究&apos;: 9, &apos;实现&apos;: 5, &apos;途径&apos;: 15, &apos;即以&apos;: 3, &apos;手段&apos;: 6, &apos;解决&apos;: 13, &apos;问题&apos;: 17}</code></pre><p>特征词的个数是18,对应的索引为0到17</p>
+<h2 id="4-获取tf-idf矩阵"><a href="#4-获取tf-idf矩阵" class="headerlink" title="4 获取tf-idf矩阵"></a>4 获取tf-idf矩阵</h2><p>查看tf-idf矩阵</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">python</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">matrix = model.transform(text_split)</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="4-1-矩阵的shape"><a href="#4-1-矩阵的shape" class="headerlink" title="4.1 矩阵的shape"></a>4.1 矩阵的shape</h3><p>矩阵是3行18列，也就是有3个文档，每个文档有18个特征词</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">python</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">print(matrix.shape)</span><br></pre></td></tr></table></figure></div>
+
+
+
+<pre><code>(3, 18)</code></pre><h3 id="4-2-查看矩阵的内容"><a href="#4-2-查看矩阵的内容" class="headerlink" title="4.2 查看矩阵的内容"></a>4.2 查看矩阵的内容</h3><p>这是个稀疏矩阵，如(0,8)表示第0个文档，第8个特征词(从0开始)的权重值</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">python</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">print(matrix)</span><br></pre></td></tr></table></figure></div>
+
+<pre><code>(0, 8)    0.3495777539781596
+(0, 4)    0.3495777539781596
+(0, 2)    0.5918865885345992
+(0, 1)    0.45014500672563534
+(0, 0)    0.45014500672563534
+(1, 16)    0.3604298781233275
+(1, 14)    0.3604298781233275
+(1, 12)    0.3604298781233275
+(1, 11)    0.3604298781233275
+(1, 10)    0.3604298781233275
+(1, 9)    0.3604298781233275
+(1, 8)    0.21287569223847908
+(1, 7)    0.3604298781233275
+(1, 4)    0.21287569223847908
+(2, 17)    0.2925701011880934
+(2, 15)    0.2925701011880934
+(2, 13)    0.2925701011880934
+(2, 8)    0.3455932296344571
+(2, 6)    0.2925701011880934
+(2, 5)    0.2925701011880934
+(2, 4)    0.3455932296344571
+(2, 3)    0.2925701011880934
+(2, 1)    0.4450142061610019
+(2, 0)    0.22250710308050095</code></pre><p>直接查看具体的矩阵</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">python</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">print(matrix.todense())</span><br></pre></td></tr></table></figure></div>
+
+<pre><code>[[0.45014501 0.45014501 0.59188659 0.         0.34957775 0.
+  0.         0.         0.34957775 0.         0.         0.
+  0.         0.         0.         0.         0.         0.        ]
+ [0.         0.         0.         0.         0.21287569 0.
+  0.         0.36042988 0.21287569 0.36042988 0.36042988 0.36042988
+  0.36042988 0.         0.36042988 0.         0.36042988 0.        ]
+ [0.2225071  0.44501421 0.         0.2925701  0.34559323 0.2925701
+  0.2925701  0.         0.34559323 0.         0.         0.
+  0.         0.2925701  0.         0.2925701  0.         0.2925701 ]]</code></pre><h2 id="5-TfidfVectorizer的参数说明"><a href="#5-TfidfVectorizer的参数说明" class="headerlink" title="5 TfidfVectorizer的参数说明"></a>5 TfidfVectorizer的参数说明</h2><ul>
+<li><p>token_pattern ：可以添加正则表达式，如 <code>token_pattern=r&quot;(?u)\b\w+\b&quot;)</code>可以匹配到单个子，如果为<code>r&quot;(?u)\b\w\w+\b&quot;</code>则会只匹配两个子以上的词。</p>
+</li>
+<li><p>max_df：浮点数：[0.0,1.0]，如0.4，若某词语在的样本点中出现的概率超40%，则生成字典时剔除该词语；默认是1.0,即不剔除。</p>
+</li>
+<li><p>min_df：整数：n。若某词语样本点中出现的次数小于n，生成字典时剔除该词语。默认是1，表明若词语只在1个以下文档中出现，剔除。</p>
+</li>
+<li><p>max_features：整数：n。根据词语的TF-IDF权重降序排列，取前面n个最高值的词语组成词典。默认是None，即取全部词语。</p>
+</li>
+<li><p>stop_words：指定停止词</p>
+</li>
+<li><p>ngram_range: tuple(min_n, max_n) 要提取的n-gram的n-values的下限和上限范围，在min_n &lt;= n &lt;= max_n区间的n的全部值</p>
+</li>
+<li><p>smooth_idf：boolean通过加1到文档频率平滑idf权重，为防止除零，加入一个额外的文档</p>
+</li>
+</ul>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">python</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.feature_extraction.text <span class="keyword">import</span> TfidfVectorizer</span><br><span class="line">stwlist = [<span class="string">'的'</span>,<span class="string">'一个'</span>,<span class="string">'是'</span>,<span class="string">'。'</span>]</span><br><span class="line">tfvector = TfidfVectorizer(min_df=<span class="number">1</span>,  </span><br><span class="line">                           max_df=<span class="number">0.5</span>,</span><br><span class="line">                           max_features=<span class="literal">None</span>,                 </span><br><span class="line">                           ngram_range=(<span class="number">1</span>, <span class="number">2</span>), </span><br><span class="line">                           use_idf=<span class="literal">True</span>,</span><br><span class="line">                           smooth_idf=<span class="literal">True</span>,</span><br><span class="line">                           stop_words = stwlist)</span><br><span class="line">model = tfvector.fit(text_split)</span><br></pre></td></tr></table></figure></div>
+
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">foochane</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://foochane.cn/article/2019090201.html">https://foochane.cn/article/2019090201.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://foochane.cn">foochane</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/">文本分类    </a></div><div class="post_share"><div class="social-share" data-image="/images/cover/4.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><a class="reward-button button--primary button--animated"> <i class="fa fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="lazyload post-qr-code__img" src="/images/site/reward/wechat.png" alt="微信"><div class="post-qr-code__desc">微信</div></li><li class="reward-item"><img class="lazyload post-qr-code__img" src="/images/site/reward/alipay.png" alt="支付宝"><div class="post-qr-code__desc">支付宝</div></li></ul></div></a></div><nav class="pagination_post" id="pagination"><div class="prev-post pull_left"><a href="/article/2019090301.html"><img class="prev_cover lazyload" data-src="/images/cover/7.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="label">上一篇</div><div class="prev_info"><span>文本分类之CountVectorizer使用</span></div></a></div><div class="next-post pull_right"><a href="/article/2019090101.html"><img class="next_cover lazyload" data-src="/images/cover/2.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>文本分类之文本预处理</span></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="https://foochane.cn/article/2019090101.html" title="文本分类之文本预处理"><img class="relatedPosts_cover lazyload"data-src="/images/cover/2.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2019-09-01</div><div class="relatedPosts_title">文本分类之文本预处理</div></div></a></div><div class="relatedPosts_item"><a href="https://foochane.cn/article/2019052202.html" title="词嵌入+神经网络进行邮件分类"><img class="relatedPosts_cover lazyload"data-src="/images/cover/2.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2019-05-22</div><div class="relatedPosts_title">词嵌入+神经网络进行邮件分类</div></div></a></div><div class="relatedPosts_item"><a href="https://foochane.cn/article/2019090301.html" title="文本分类之CountVectorizer使用"><img class="relatedPosts_cover lazyload"data-src="/images/cover/7.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2019-09-03</div><div class="relatedPosts_title">文本分类之CountVectorizer使用</div></div></a></div><div class="relatedPosts_item"><a href="https://foochane.cn/article/2019091501.html" title="文本分类之常用方法总结"><img class="relatedPosts_cover lazyload"data-src="true"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2019-09-15</div><div class="relatedPosts_title">文本分类之常用方法总结</div></div></a></div></div><div class="clear_both"></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var notify = true == true ? true : false;
+var verify = false == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'zCeKCftRr91sIth6b8UsWKb9-gzGzoHsz',
+  appKey:'SIMyV1MuzsbUpvUErd6bUlC2',
+  placeholder:'Please leave your footprints',
+  avatar:'monsterid',
+  guest_info:guest_info,
+  pageSize:'10',
+  lang:'zh-cn',
+  recordIP: true
+});</script></div></div></main><footer id="footer" style="background-image: url(/images/cover/4.jpg)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2022 By foochane</div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-list-ul close" id="mobile-toc-button" title="目录" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async=""></script><script src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/click_heart.js"></script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

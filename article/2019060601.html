@@ -1,0 +1,237 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>PySpark SQL 相关知识介绍 | foochane</title><meta name="description" content="PySpark SQL 相关知识介绍"><meta name="keywords" content="大数据,PySpark"><meta name="author" content="foochane"><meta name="copyright" content="foochane"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/images/site/favicon.png"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="https://hm.baidu.com"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="PySpark SQL 相关知识介绍"><meta name="twitter:description" content="PySpark SQL 相关知识介绍"><meta name="twitter:image" content="https://foochane.cn/images/cover/7.jpg"><meta property="og:type" content="article"><meta property="og:title" content="PySpark SQL 相关知识介绍"><meta property="og:url" content="https://foochane.cn/article/2019060601"><meta property="og:site_name" content="foochane"><meta property="og:description" content="PySpark SQL 相关知识介绍"><meta property="og:image" content="https://foochane.cn/images/cover/7.jpg"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
+
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="https://foochane.cn/article/2019060601"><link rel="prev" title="hexo博客支持pwa" href="https://foochane.cn/article/2019061201.html"><link rel="next" title="hexo博客中添加gitalk评论插件" href="https://foochane.cn/article/2019052801.html"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?e75706f2332bc6bbea2cc9a3372553f0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  baiduPush: true,
+  isHome: false,
+  isPost: true
+  
+}</script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="foochane" type="application/atom+xml">
+</head><body><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">foochane</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></span><span class="pull_right" id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/images/site/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">60</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">23</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">8</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">目录</div><div class="sidebar-toc__content"><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#1-大数据简介"><span class="toc_mobile_items-text">1 大数据简介</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-1-Volume"><span class="toc_mobile_items-text">1.1 Volume</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-2-Velocity"><span class="toc_mobile_items-text">1.2 Velocity</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-3-Variety"><span class="toc_mobile_items-text">1.3 Variety</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-4-Veracity"><span class="toc_mobile_items-text">1.4 Veracity</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#2-Hadoop-介绍"><span class="toc_mobile_items-text">2 Hadoop 介绍</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-1-HDFS介绍"><span class="toc_mobile_items-text">2.1 HDFS介绍</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-2-MapReduce介绍"><span class="toc_mobile_items-text">2.2 MapReduce介绍</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#3-Apache-Hive-介绍"><span class="toc_mobile_items-text">3 Apache Hive 介绍</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#4-Apache-Pig介绍"><span class="toc_mobile_items-text">4 Apache Pig介绍</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#5-Apache-Kafka-介绍"><span class="toc_mobile_items-text">5 Apache Kafka 介绍</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#5-1-Producer"><span class="toc_mobile_items-text">5.1 Producer</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#5-2-Broker"><span class="toc_mobile_items-text">5.2 Broker</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#5-3-Consumer"><span class="toc_mobile_items-text">5.3 Consumer</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#6-Apache-Spark介绍"><span class="toc_mobile_items-text">6 Apache Spark介绍</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#7-PySpark-SQL介绍"><span class="toc_mobile_items-text">7 PySpark SQL介绍</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#7-1-DataFrames"><span class="toc_mobile_items-text">7.1 DataFrames</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#7-2-SparkSession"><span class="toc_mobile_items-text">7.2 SparkSession</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#7-3-Structured-Streaming"><span class="toc_mobile_items-text">7.3 Structured Streaming</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#7-4-Catalyst-Optimizer"><span class="toc_mobile_items-text">7.4 Catalyst Optimizer</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#8-集群管理器（Cluster-Managers）"><span class="toc_mobile_items-text">8 集群管理器（Cluster Managers）</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#8-1-单机集群管理器（Standalone-Cluster-Manager）"><span class="toc_mobile_items-text">8.1 单机集群管理器（Standalone Cluster Manager）</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#8-2-Apache-Mesos集群管理器（Apache-Mesos-Cluster-Manager）"><span class="toc_mobile_items-text">8.2 Apache Mesos集群管理器（Apache Mesos Cluster Manager）</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#8-3-YARN-集群管理器（YARN-Cluster-Manager）"><span class="toc_mobile_items-text">8.3 YARN 集群管理器（YARN Cluster Manager）</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#9-PostgreSQL介绍"><span class="toc_mobile_items-text">9 PostgreSQL介绍</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#10-MongoDB介绍"><span class="toc_mobile_items-text">10 MongoDB介绍</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#11-Cassandra介绍"><span class="toc_mobile_items-text">11 Cassandra介绍</span></a></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="color"></div><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-大数据简介"><span class="toc-text">1 大数据简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-Volume"><span class="toc-text">1.1 Volume</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-Velocity"><span class="toc-text">1.2 Velocity</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-Variety"><span class="toc-text">1.3 Variety</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-Veracity"><span class="toc-text">1.4 Veracity</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Hadoop-介绍"><span class="toc-text">2 Hadoop 介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-HDFS介绍"><span class="toc-text">2.1 HDFS介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-MapReduce介绍"><span class="toc-text">2.2 MapReduce介绍</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Apache-Hive-介绍"><span class="toc-text">3 Apache Hive 介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Apache-Pig介绍"><span class="toc-text">4 Apache Pig介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Apache-Kafka-介绍"><span class="toc-text">5 Apache Kafka 介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-Producer"><span class="toc-text">5.1 Producer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-Broker"><span class="toc-text">5.2 Broker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-Consumer"><span class="toc-text">5.3 Consumer</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Apache-Spark介绍"><span class="toc-text">6 Apache Spark介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-PySpark-SQL介绍"><span class="toc-text">7 PySpark SQL介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-DataFrames"><span class="toc-text">7.1 DataFrames</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-SparkSession"><span class="toc-text">7.2 SparkSession</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-Structured-Streaming"><span class="toc-text">7.3 Structured Streaming</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-4-Catalyst-Optimizer"><span class="toc-text">7.4 Catalyst Optimizer</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-集群管理器（Cluster-Managers）"><span class="toc-text">8 集群管理器（Cluster Managers）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-单机集群管理器（Standalone-Cluster-Manager）"><span class="toc-text">8.1 单机集群管理器（Standalone Cluster Manager）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-Apache-Mesos集群管理器（Apache-Mesos-Cluster-Manager）"><span class="toc-text">8.2 Apache Mesos集群管理器（Apache Mesos Cluster Manager）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-YARN-集群管理器（YARN-Cluster-Manager）"><span class="toc-text">8.3 YARN 集群管理器（YARN Cluster Manager）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-PostgreSQL介绍"><span class="toc-text">9 PostgreSQL介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-MongoDB介绍"><span class="toc-text">10 MongoDB介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-Cassandra介绍"><span class="toc-text">11 Cassandra介绍</span></a></li></ol></div></div></div><main id="content-outer"><div id="top-container" style="background-image: url(/images/banner/0.jpg)"><div id="post-info"><div id="post-title"><div class="posttitle">PySpark SQL 相关知识介绍</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2019-06-06</time><span class="post-meta__separator">|</span><span><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a></span><div class="post-meta-wordcount"><i class="fa fa-file-word-o post-meta__icon fa-fw" aria-hidden="true"></i><span>字数总计:</span><span class="word-count">5.9k</span><span class="post-meta__separator">|</span><i class="fa fa-clock-o post-meta__icon fa-fw" aria-hidden="true"></i><span>阅读时长: 18 分钟</span><div class="post-meta-pv-cv"><span class="post-meta__separator">|</span><span><i class="fa fa-eye post-meta__icon fa-fw" aria-hidden="true"> </i>阅读量:</span><span id="busuanzi_value_page_pv"></span><span class="post-meta__separator">|</span><i class="fa fa-comments-o post-meta__icon fa-fw" aria-hidden="true"></i><span>评论数:</span><a href="/article/2019060601.html#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/article/2019060601.html" itemprop="commentCount"></span></a></div></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><blockquote>
+<p>大数据 Hadoop Hive Pig Kafka Spark PySpark SQL 集群管理器 PostgreSQL MongoDB Cassandra</p>
+</blockquote>
+<h2 id="1-大数据简介"><a href="#1-大数据简介" class="headerlink" title="1 大数据简介"></a>1 大数据简介</h2><p>大数据是这个时代最热门的话题之一。但是什么是大数据呢?它描述了一个庞大的数据集，并且正在以惊人的速度增长。大数据除了体积(Volume)和速度(velocity)外，数据的多样性(variety)和准确性(veracity)也是大数据的一大特点。让我们详细讨论体积、速度、多样性和准确性。这些也被称为大数据的4V特征。</p>
+<h3 id="1-1-Volume"><a href="#1-1-Volume" class="headerlink" title="1.1 Volume"></a>1.1 Volume</h3><p>数据体积(Volume)指定要处理的数据量。对于大量数据，我们需要大型机器或分布式系统。计算时间随数据量的增加而增加。所以如果我们能并行化计算，最好使用分布式系统。数据可以是结构化数据、非结构化数据或介于两者之间的数据。如果我们有非结构化数据，那么情况就会变得更加复杂和计算密集型。你可能会想，大数据到底有多大?这是一个有争议的问题。但一般来说，我们可以说，我们无法使用传统系统处理的数据量被定义为大数据。现在让我们讨论一下数据的速度。</p>
+<h3 id="1-2-Velocity"><a href="#1-2-Velocity" class="headerlink" title="1.2 Velocity"></a>1.2 Velocity</h3><p>越来越多的组织机构开始重视数据。每时每刻都在收集大量的数据。这意味着数据的速度在增加。一个系统如何处理这个速度?当必须实时分析大量流入的数据时，问题就变得复杂了。许多系统正在开发，以处理这种巨大的数据流入。将传统数据与大数据区别开来的另一个因素是数据的多样性。</p>
+<h3 id="1-3-Variety"><a href="#1-3-Variety" class="headerlink" title="1.3 Variety"></a>1.3 Variety</h3><p>数据的多样性使得它非常复杂，传统的数据分析系统无法正确地分析它。我们说的是哪一种?数据不就是数据吗?图像数据不同于表格数据，因为它的组织和保存方式不同。可以使用无限数量的文件系统。每个文件系统都需要一种不同的方法来处理它。读取和写入JSON文件与处理CSV文件的方式不同。现在，数据科学家必须处理数据类型的组合。您将要处理的数据可能是图片、视频、文本等的组合。大数据的多样性使得分析变得更加复杂。</p>
+<h3 id="1-4-Veracity"><a href="#1-4-Veracity" class="headerlink" title="1.4 Veracity"></a>1.4 Veracity</h3><p>你能想象一个逻辑错误的计算机程序产生正确的输出吗?同样，不准确的数据将提供误导的结果。准确性，或数据正确性，是一个重要的问题。对于大数据，我们必须考虑数据的异常。</p>
+<h2 id="2-Hadoop-介绍"><a href="#2-Hadoop-介绍" class="headerlink" title="2 Hadoop 介绍"></a>2 Hadoop 介绍</h2><p>Hadoop是一个解决大数据问题的分布式、可伸缩的框架。Hadoop是由Doug Cutting和Mark Cafarella开发的。Hadoop是用Java编写的。它可以安装在一组商用硬件上，并且可以在分布式系统上水平扩展。</p>
+<p>在商品硬件上工作使它非常高效。如果我们的工作是在商品硬件，故障是一个不可避免的问题。但是Hadoop为数据存储和计算提供了一个容错系统。这种容错能力使得Hadoop非常流行。</p>
+<p>Hadoop有两个组件：第一个组件是HDFS(Hadoop Distributed File System)，它是一个分布式文件系统。第二个组件是MapReduce。HDFS用于分布式数据存储，MapReduce用于对存储在HDFS中的数据执行计算。</p>
+<h3 id="2-1-HDFS介绍"><a href="#2-1-HDFS介绍" class="headerlink" title="2.1 HDFS介绍"></a>2.1 HDFS介绍</h3><p>HDFS用于以分布式和容错的方式存储大量数据。HDFS是用Java编写的，在普通硬件上运行。它的灵感来自于谷歌文件系统(GFS)的谷歌研究论文。它是一个写一次读多次的系统，对大量的数据是有效的。HDFS有两个组件NameNode和DataNode。</p>
+<p>这两个组件是Java守护进程。NameNode负责维护分布在集群上的文件的元数据，它是许多datanode的主节点。HDFS将大文件分成小块，并将这些块保存在不同的datanode上。实际的文件数据块驻留在datanode上。HDFS提供了一组类unix-shell的命令。但是，我们可以使用HDFS提供的Java filesystem API在更细的级别上处理大型文件。容错是通过复制数据块来实现的。</p>
+<p>我们可以使用并行的单线程进程访问HDFS文件。HDFS提供了一个非常有用的实用程序，称为distcp，它通常用于以并行方式将数据从一个HDFS系统传输到另一个HDFS系统。它使用并行映射任务复制数据。</p>
+<h3 id="2-2-MapReduce介绍"><a href="#2-2-MapReduce介绍" class="headerlink" title="2.2 MapReduce介绍"></a>2.2 MapReduce介绍</h3><p>计算的MapReduce模型最早出现在谷歌的一篇研究论文中。Hadoop的MapReduce是Hadoop框架的计算引擎，它在HDFS中对分布式数据进行计算。MapReduce已被发现可以在商品硬件的分布式系统上进行水平伸缩。它也适用于大问题。在MapReduce中，问题的解决分为Map阶段和Reduce阶段。在Map阶段，处理数据块，在Reduce阶段，对Map阶段的结果运行聚合或缩减操作。Hadoop的MapReduce框架也是用Java编写的。</p>
+<p>MapReduce是一个主从模型。在Hadoop 1中，这个MapReduce计算由两个守护进程Jobtracker和Tasktracker管理。Jobtracker是处理许多任务跟踪器的主进程。Tasktracker是Jobtracker的从节点。但在Hadoop 2中，Jobtracker和Tasktracker被YARN取代。</p>
+<p>我们可以使用框架提供的API和Java编写MapReduce代码。Hadoop streaming体模块使具有Python和Ruby知识的程序员能够编写MapReduce程序。</p>
+<p>MapReduce算法有很多用途。如许多机器学习算法都被Apache Mahout实现，它可以在Hadoop上通过Pig和Hive运行。</p>
+<p>但是MapReduce并不适合迭代算法。在每个Hadoop作业结束时，MapReduce将数据保存到HDFS并为下一个作业再次读取数据。我们知道，将数据读入和写入文件是代价高昂的活动。Apache Spark通过提供内存中的数据持久性和计算，减轻了MapReduce的缺点。</p>
+<blockquote>
+<p>更多关于Mapreduce 和 Mahout 可以查看如下网页：</p>
+<ul>
+<li><a href="https://www.usenix.org/legacy/publications/library/proceedings/osdi04/tech/full_papers/dean/dean_html/index.html" target="_blank" rel="noopener">https://www.usenix.org/legacy/publications/library/proceedings/osdi04/tech/full_papers/dean/dean_html/index.html</a></li>
+<li><a href="https://mahout.apache.org/users/basics/quickstart.html" target="_blank" rel="noopener">https://mahout.apache.org/users/basics/quickstart.html</a></li>
+</ul>
+</blockquote>
+<h2 id="3-Apache-Hive-介绍"><a href="#3-Apache-Hive-介绍" class="headerlink" title="3 Apache Hive 介绍"></a>3 Apache Hive 介绍</h2><p>计算机科学是一个抽象的世界。每个人都知道数据是以位的形式出现的信息。像C这样的编程语言提供了对机器和汇编语言的抽象。其他高级语言提供了更多的抽象。结构化查询语言(Structured Query Language, SQL)就是这些抽象之一。世界各地的许多数据建模专家都在使用SQL。Hadoop非常适合大数据分析。那么，了解SQL的广大用户如何利用Hadoop在大数据上的计算能力呢?为了编写Hadoop的MapReduce程序，用户必须知道可以用来编写Hadoop的MapReduce程序的编程语言。</p>
+<p>现实世界中的日常问题遵循一定的模式。一些问题在日常生活中很常见，比如数据操作、处理缺失值、数据转换和数据汇总。为这些日常问题编写MapReduce代码对于非程序员来说是一项令人头晕目眩的工作。编写代码来解决问题不是一件很聪明的事情。但是编写具有性能可伸缩性和可扩展性的高效代码是有价值的。考虑到这个问题，Apache Hive就在Facebook开发出来，它可以解决日常问题，而不需要为一般问题编写MapReduce代码。</p>
+<p>根据Hive wiki的语言，Hive是一个基于Apache Hadoop的数据仓库基础设施。Hive有自己的SQL方言，称为Hive查询语言。它被称为HiveQL，有时也称为HQL。使用HiveQL, Hive查询HDFS中的数据。Hive不仅运行在HDFS上，还运行在Spark和其他大数据框架上，比如Apache Tez。</p>
+<p>Hive为HDFS中的结构化数据向用户提供了类似关系数据库管理系统的抽象。您可以创建表并在其上运行类似sql的查询。Hive将表模式保存在一些RDBMS中。Apache Derby是Apache Hive发行版附带的默认RDBMS。Apache Derby完全是用Java编写的，是Apache License Version 2.0附带的开源RDBMS。</p>
+<p><strong>HiveQL命令被转换成Hadoop的MapReduce代码，然后在Hadoop集群上运行。</strong></p>
+<p>了解SQL的人可以轻松学习Apache Hive和HiveQL，并且可以在日常的大数据数据分析工作中使用Hadoop的存储和计算能力。PySpark SQL也支持HiveQL。您可以在PySpark SQL中运行HiveQL命令。除了执行HiveQL查询，您还可以直接从Hive读取数据到PySpark SQL并将结果写入Hive</p>
+<blockquote>
+<p>相关链接：</p>
+<ul>
+<li><a href="https://cwiki.apache.org/confluence/display/Hive/Tutorial" target="_blank" rel="noopener">https://cwiki.apache.org/confluence/display/Hive/Tutorial</a></li>
+<li><a href="https://db.apache.org/derby/" target="_blank" rel="noopener">https://db.apache.org/derby/</a></li>
+</ul>
+</blockquote>
+<h2 id="4-Apache-Pig介绍"><a href="#4-Apache-Pig介绍" class="headerlink" title="4 Apache Pig介绍"></a>4 Apache Pig介绍</h2><p>Apache Pig是一个数据流框架，用于对大量数据执行数据分析。它是由雅虎开发的，并向Apache软件基金会开放源代码。它现在可以在Apache许可2.0版本下使用。Pig编程语言是一种Pig拉丁脚本语言。Pig松散地连接到Hadoop，这意味着我们可以将它连接到Hadoop并执行许多分析。但是Pig可以与Apache Tez和Apache Spark等其他工具一起使用。</p>
+<p>Apache Hive用作报告工具，其中Apache Pig用于提取、转换和加载(ETL)。我们可以使用用户定义函数(UDF)扩展Pig的功能。用户定义函数可以用多种语言编写，包括Java、Python、Ruby、JavaScript、Groovy和Jython。</p>
+<p>Apache Pig使用HDFS读取和存储数据，Hadoop的MapReduce执行算法。Apache Pig在使用Hadoop集群方面类似于Apache Hive。在Hadoop上，Pig命令首先转换为Hadoop的MapReduce代码。然后将它们转换为MapReduce代码，该代码运行在Hadoop集群上。</p>
+<p>Pig最好的部分是对代码进行优化和测试，以处理日常问题。所以用户可以直接安装Pig并开始使用它。Pig提供了Grunt shell来运行交互式的Pig命令。因此，任何了解Pig Latin的人都可以享受HDFS和MapReduce的好处，而不需要了解Java或Python等高级编程语言。</p>
+<p><a href="/images/2019/001.jpg" data-fancybox="group" data-caption class="fancybox"><img alt title data-src="/images/2019/001.jpg" class="lazyload"></a></p>
+<blockquote>
+<p>相关链接</p>
+<ul>
+<li><a href="http://pig.apache.org/docs/" target="_blank" rel="noopener">http://pig.apache.org/docs/</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Pig_(programming_tool)" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Pig_(programming_tool)</a></li>
+<li><a href="https://cwiki.apache.org/confluence/display/PIG/Index" target="_blank" rel="noopener">https://cwiki.apache.org/confluence/display/PIG/Index</a></li>
+</ul>
+</blockquote>
+<h2 id="5-Apache-Kafka-介绍"><a href="#5-Apache-Kafka-介绍" class="headerlink" title="5 Apache Kafka 介绍"></a>5 Apache Kafka 介绍</h2><p>Apache Kafka是一个发布-订阅的分布式消息传递平台。它由LinkedIn开发，并进一步开源给Apache基金会。它是容错的、可伸缩的和快速的。Kafka术语中的消息(数据的最小单位)通过Kafka服务器从生产者流向消费者，并且可以在稍后的时间被持久化和使用。</p>
+<p>Kafka提供了一个内置的API，开发人员可以使用它来构建他们的应用程序。接下来我们讨论Apache Kafka的三个主要组件。</p>
+<h3 id="5-1-Producer"><a href="#5-1-Producer" class="headerlink" title="5.1 Producer"></a>5.1 Producer</h3><p>Kafka Producer 将消息生成到Kafka主题，它可以将数据发布到多个主题。</p>
+<h3 id="5-2-Broker"><a href="#5-2-Broker" class="headerlink" title="5.2 Broker"></a>5.2 Broker</h3><p>这是运行在专用机器上的Kafka服务器，消息由Producer推送到Broker。Broker将主题保存在不同的分区中，这些分区被复制到不同的Broker以处理错误。它本质上是无状态的，因此使用者必须跟踪它所消费的消息。</p>
+<h3 id="5-3-Consumer"><a href="#5-3-Consumer" class="headerlink" title="5.3 Consumer"></a>5.3 Consumer</h3><p>Consumer从Kafka代理获取消息。记住，它获取消息。Kafka Broker不会将消息推送给Consumer;相反，Consumer从Kafka Broker中提取数据。Consumer订阅Kafka Broker上的一个或多个主题，并读取消息。Broker还跟踪它所使用的所有消息。数据将在Broker中保存指定的时间。如果使用者失败，它可以在重新启动后获取数据。</p>
+<p><a href="/images/2019/002.jpg" data-fancybox="group" data-caption class="fancybox"><img alt title data-src="/images/2019/002.jpg" class="lazyload"></a></p>
+<blockquote>
+<p>相关链接：</p>
+<ul>
+<li><a href="https://kafka.apache.org/documentation/" target="_blank" rel="noopener">https://kafka.apache.org/documentation/</a></li>
+<li><a href="https://kafka.apache.org/quickstart" target="_blank" rel="noopener">https://kafka.apache.org/quickstart</a></li>
+</ul>
+</blockquote>
+<h2 id="6-Apache-Spark介绍"><a href="#6-Apache-Spark介绍" class="headerlink" title="6 Apache Spark介绍"></a>6 Apache Spark介绍</h2><p>Apache Spark是一个通用的分布式编程框架。它被认为非常适合迭代和批处理数据。它是在AMP实验室开发的，它提供了一个内存计算框架。它是开源软件。一方面，它最适合批量处理，另一方面，它对实时或接近实时的数据非常有效。机器学习和图形算法本质上是迭代的，这就是Spark的神奇之处。根据它的研究论文，它比它的同行Hadoop快得多。数据可以缓存在内存中。在迭代算法中缓存中间数据提供了惊人的快速处理。Spark可以使用Java、Scala、Python和R进行编程。</p>
+<p>如果您认为Spark是经过改进的Hadoop，在某种程度上，确实是可以这么认为的。因为我们可以在Spark中实现MapReduce算法，所以Spark使用了HDFS的优点。这意味着它可以从HDFS读取数据并将数据存储到HDFS，而且它可以有效地处理迭代计算，因为数据可以保存在内存中。除了内存计算外，它还适用于交互式数据分析。</p>
+<p>还有许多其他库也位于PySpark之上，以便更容易地使用PySpark。下面我们将讨论一些：</p>
+<ul>
+<li>MLlib: MLlib是PySpark核心的一个包装器，它处理机器学习算法。MLlib库提供的机器学习api非常容易使用。MLlib支持多种机器学习算法，包括分类、聚类、文本分析等等。</li>
+<li>ML: ML也是一个位于PySpark核心的机器学习库。ML的机器学习api可以用于数据流。</li>
+<li>GraphFrames: GraphFrames库提供了一组api，可以使用PySpark core和PySpark SQL高效地进行图形分析。</li>
+</ul>
+<h2 id="7-PySpark-SQL介绍"><a href="#7-PySpark-SQL介绍" class="headerlink" title="7 PySpark SQL介绍"></a>7 PySpark SQL介绍</h2><p>数据科学家处理的大多数数据在本质上要么是结构化的，要么是半结构化的。为了处理结构化和半结构化数据集，PySpark SQL模块是该PySpark核心之上的更高级别抽象。我们将在整本书中学习PySpark SQL。它内置在PySpark中，这意味着它不需要任何额外的安装。</p>
+<p>使用PySpark SQL，您可以从许多源读取数据。PySpark SQL支持从许多文件格式系统读取，包括文本文件、CSV、ORC、Parquet、JSON等。您可以从关系数据库管理系统(RDBMS)读取数据，如MySQL和PostgreSQL。您还可以将分析报告保存到许多系统和文件格式。</p>
+<h3 id="7-1-DataFrames"><a href="#7-1-DataFrames" class="headerlink" title="7.1 DataFrames"></a>7.1 DataFrames</h3><p>DataFrames是一种抽象，类似于关系数据库系统中的表。它们由指定的列组成。DataFrames是行对象的集合，这些对象在PySpark SQL中定义。DataFrames也由指定的列对象组成。用户知道表格形式的模式，因此很容易对数据流进行操作。</p>
+<p>DataFrame 列中的元素将具有相同的数据类型。DataFrame 中的行可能由不同数据类型的元素组成。基本数据结构称为弹性分布式数据集(RDD)。数据流是RDD上的包装器。它们是RDD或row对象。</p>
+<blockquote>
+<p>相关链接：</p>
+<ul>
+<li><a href="https://spark.apache.org/docs/latest/sql-programming-guide.html" target="_blank" rel="noopener">https://spark.apache.org/docs/latest/sql-programming-guide.html</a></li>
+</ul>
+</blockquote>
+<h3 id="7-2-SparkSession"><a href="#7-2-SparkSession" class="headerlink" title="7.2 SparkSession"></a>7.2 SparkSession</h3><p>SparkSession对象是替换SQLContext和HiveContext的入口点。为了使PySpark SQL代码与以前的版本兼容，SQLContext和HiveContext将继续在PySpark中运行。在PySpark控制台中，我们获得了SparkSession对象。我们可以使用以下代码创建SparkSession对象。</p>
+<p>为了创建SparkSession对象，我们必须导入SparkSession，如下所示。</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from pyspark.sql import SparkSession</span><br></pre></td></tr></table></figure></div>
+
+<p>导入SparkSession后，我们可以使用SparkSession.builder进行操作：</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spark &#x3D; SparkSession.builder.appName(&quot;PythonSQLAPP&quot;) .getOrCreate()</span><br></pre></td></tr></table></figure></div>
+<p>appName函数将设置应用程序的名称。函数的作用是:返回一个现有的SparkSession对象。如果不存在SparkSession对象，getOrCreate()函数将创建一个新对象并返回它。</p>
+<h3 id="7-3-Structured-Streaming"><a href="#7-3-Structured-Streaming" class="headerlink" title="7.3 Structured Streaming"></a>7.3 Structured Streaming</h3><p>我们可以使用结构化流框架(PySpark SQL的包装器)进行流数据分析。我们可以使用结构化流以类似的方式对流数据执行分析，就像我们使用PySpark SQL对静态数据执行批处理分析一样。正如Spark流模块对小批执行流操作一样，结构化流引擎也对小批执行流操作。结构化流最好的部分是它使用了类似于PySpark SQL的API。因此，学习曲线很高。对数据流的操作进行优化，并以类似的方式在性能上下文中优化结构化流API。</p>
+<h3 id="7-4-Catalyst-Optimizer"><a href="#7-4-Catalyst-Optimizer" class="headerlink" title="7.4 Catalyst Optimizer"></a>7.4 Catalyst Optimizer</h3><p>SQL是一种声明性语言。使用SQL，我们告诉SQL引擎要做什么。我们不告诉它如何执行任务。类似地，PySpark SQL命令不会告诉它如何执行任务。这些命令只告诉它要执行什么。因此，PySpark SQL查询在执行任务时需要优化。catalyst优化器在PySpark SQL中执行查询优化。PySpark SQL查询被转换为低级的弹性分布式数据集(RDD)操作。catalyst优化器首先将PySpark SQL查询转换为逻辑计划，然后将此逻辑计划转换为优化的逻辑计划。从这个优化的逻辑计划创建一个物理计划。创建多个物理计划。使用成本分析仪，选择最优的物理方案。最后，创建低层RDD操作代码。</p>
+<h2 id="8-集群管理器（Cluster-Managers）"><a href="#8-集群管理器（Cluster-Managers）" class="headerlink" title="8 集群管理器（Cluster Managers）"></a>8 集群管理器（Cluster Managers）</h2><p>在分布式系统中，作业或应用程序被分成不同的任务，这些任务可以在集群中的不同机器上并行运行。如果机器发生故障，您必须在另一台机器上重新安排任务。</p>
+<p>由于资源管理不善，分布式系统通常面临可伸缩性问题。考虑一个已经在集群上运行的作业。另一个人想做另一份工作。第二项工作必须等到第一项工作完成。但是这样我们并没有最优地利用资源。资源管理很容易解释，但是很难在分布式系统上实现。开发集群管理器是为了优化集群资源的管理。有三个集群管理器可用于Spark单机、Apache Mesos和YARN。这些集群管理器最好的部分是，它们在用户和集群之间提供了一个抽象层。由于集群管理器提供的抽象，用户体验就像在一台机器上工作，尽管他们在集群上工作。集群管理器将集群资源调度到正在运行的应用程序。</p>
+<h3 id="8-1-单机集群管理器（Standalone-Cluster-Manager）"><a href="#8-1-单机集群管理器（Standalone-Cluster-Manager）" class="headerlink" title="8.1 单机集群管理器（Standalone Cluster Manager）"></a>8.1 单机集群管理器（Standalone Cluster Manager）</h3><p>Apache Spark附带一个单机集群管理器。它提供了一个主从架构来激发集群。它是一个只使用spark的集群管理器。您只能使用这个独立的集群管理器运行Spark应用程序。它的组件是主组件和工作组件。工人是主过程的奴隶，它是最简单的集群管理器。可以使用Spark的sbin目录中的脚本配置Spark独立集群管理器。</p>
+<h3 id="8-2-Apache-Mesos集群管理器（Apache-Mesos-Cluster-Manager）"><a href="#8-2-Apache-Mesos集群管理器（Apache-Mesos-Cluster-Manager）" class="headerlink" title="8.2 Apache Mesos集群管理器（Apache Mesos Cluster Manager）"></a>8.2 Apache Mesos集群管理器（Apache Mesos Cluster Manager）</h3><p>Apache Mesos是一个通用的集群管理器。它是在加州大学伯克利分校的AMP实验室开发的。Apache Mesos帮助分布式解决方案有效地扩展。您可以使用Mesos在同一个集群上使用不同的框架运行不同的应用程序。来自不同框架的不同应用程序的含义是什么?这意味着您可以在Mesos上同时运行Hadoop应用程序和Spark应用程序。当多个应用程序在Mesos上运行时，它们共享集群的资源。Apache Mesos有两个重要组件:主组件和从组件。这种主从架构类似于Spark独立集群管理器。运行在Mesos上的应用程序称为框架。奴隶告诉主人作为资源提供的可用资源。从机定期提供资源。主服务器的分配模块决定哪个框架获取资源。</p>
+<h3 id="8-3-YARN-集群管理器（YARN-Cluster-Manager）"><a href="#8-3-YARN-集群管理器（YARN-Cluster-Manager）" class="headerlink" title="8.3 YARN 集群管理器（YARN Cluster Manager）"></a>8.3 YARN 集群管理器（YARN Cluster Manager）</h3><p>YARN代表着另一个资源谈判者(Resource Negotiator)。在Hadoop 2中引入了YARN来扩展Hadoop。资源管理与作业管理分离。分离这两个组件使Hadoop的伸缩性更好。YARN的主要成分是资源管理器（Resource Manager)、应用程序管理器(Application Master)和节点管理器(Node Manager)。有一个全局资源管理器，每个集群将运行许多节点管理器。节点管理器是资源管理器的奴隶。调度程序是ResourceManager的组件，它为集群上的不同应用程序分配资源。最棒的部分是，您可以在YARN管理的集群上同时运行Spark应用程序和任何其他应用程序，如Hadoop或MPI。每个应用程序有一个application master，它处理在分布式系统上并行运行的任务。另外，Hadoop和Spark有它们自己的ApplicationMaster。</p>
+<blockquote>
+<p>相关链接:</p>
+<ul>
+<li><a href="https://spark.apache.org/docs/2.0.0/spark-standalone.html" target="_blank" rel="noopener">https://spark.apache.org/docs/2.0.0/spark-standalone.html</a></li>
+<li><a href="https://spark.apache.org/docs/2.0.0/running-on-mesos.html" target="_blank" rel="noopener">https://spark.apache.org/docs/2.0.0/running-on-mesos.html</a></li>
+<li><a href="https://spark.apache.org/docs/2.0.0/running-on-mesos.html" target="_blank" rel="noopener">https://spark.apache.org/docs/2.0.0/running-on-yarn.html</a></li>
+</ul>
+</blockquote>
+<h2 id="9-PostgreSQL介绍"><a href="#9-PostgreSQL介绍" class="headerlink" title="9 PostgreSQL介绍"></a>9 PostgreSQL介绍</h2><p>关系数据库管理系统在许多组织中仍然非常常见。这里的关系是什么意思?关系表。PostgreSQL是一个关系数据库管理系统。它可以运行在所有主要的操作系统上，比如Microsoft Windows、基于unix的操作系统、MacOS X等等。它是一个开源程序，代码在PostgreSQL许可下可用。因此，您可以自由地使用它，并根据您的需求进行修改。</p>
+<p>PostgreSQL数据库可以通过其他编程语言(如Java、Perl、Python、C和c++)和许多其他语言(通过不同的编程接口)连接。还可以使用与PL/SQL类似的过程编程语言PL/pgSQL(过程语言/PostgreSQL)对其进行编程。您可以向该数据库添加自定义函数。您可以用C/ c++和其他编程语言编写自定义函数。您还可以使用JDBC连接器从PySpark SQL中读取PostgreSQL中的数据。</p>
+<p>PostgreSQL遵循ACID(Atomicity, Consistency, Isolation and<br>Durability/原子性、一致性、隔离性和持久性)原则。它具有许多特性，其中一些是PostgreSQL独有的。它支持可更新视图、事务完整性、复杂查询、触发器等。PostgreSQL使用多版本并发控制模型进行并发管理。</p>
+<p>PostgreSQL得到了广泛的社区支持。PostgreSQL被设计和开发为可扩展的。</p>
+<blockquote>
+<p>相关链接：</p>
+<ul>
+<li><a href="https://wiki.postgresql.org/wiki/Main_Page" target="_blank" rel="noopener">https://wiki.postgresql.org/wiki/Main_Page</a></li>
+<li><a href="https://en.wikipedia.org/wiki/PostgreSQL" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/PostgreSQL</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Multiversion_concurrency_control" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Multiversion_concurrency_control</a></li>
+<li><a href="http://postgresguide.com/" target="_blank" rel="noopener">http://postgresguide.com/</a></li>
+</ul>
+</blockquote>
+<h2 id="10-MongoDB介绍"><a href="#10-MongoDB介绍" class="headerlink" title="10 MongoDB介绍"></a>10 MongoDB介绍</h2><p>MongoDB是一个基于文档的NoSQL数据库。它是一个开放源码的分布式数据库，由MongoDB公司开发。MongoDB是用c++编写的，它是水平伸缩的。许多组织将其用于后端数据库和许多其他用途。</p>
+<p>MongoDB附带一个mongo shell，这是一个到MongoDB服务器的JavaScript接口。mongo shell可以用来运行查询以及执行管理任务。在mongo shell上，我们也可以运行JavaScript代码。</p>
+<p>使用PySpark SQL，我们可以从MongoDB读取数据并执行分析。我们也可以写出结果。</p>
+<blockquote>
+<p>相关链接：</p>
+<ul>
+<li><a href="https://docs.mongodb.com/" target="_blank" rel="noopener">https://docs.mongodb.com/</a></li>
+</ul>
+</blockquote>
+<h2 id="11-Cassandra介绍"><a href="#11-Cassandra介绍" class="headerlink" title="11 Cassandra介绍"></a>11 Cassandra介绍</h2><p>Cassandra是开放源码的分布式数据库，附带Apache许可证。这是一个由Facebook开发的NoSQL数据库。它是水平可伸缩的，最适合处理结构化数据。它提供了高水平的一致性，并且具有可调的一致性。它没有一个单一的故障点。它使用对等的分布式体系结构在不同的节点上复制数据。节点使用闲话协议交换信息。</p>
+<blockquote>
+<p>相关链接：</p>
+<ul>
+<li><a href="https://www.datastax.com/resources/tutorials" target="_blank" rel="noopener">https://www.datastax.com/resources/tutorials</a></li>
+<li><a href="http://cassandra.apache.org/doc/latest/" target="_blank" rel="noopener">http://cassandra.apache.org/doc/latest/</a></li>
+</ul>
+</blockquote>
+<!-- >本文作者：[foochane](https://foochane.cn/) 
+本文链接：[https://foochane.cn/article/2019060601.html](https://foochane.cn/article/2019060601.html) --></div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">foochane</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://foochane.cn/article/2019060601.html">https://foochane.cn/article/2019060601.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://foochane.cn">foochane</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据    </a><a class="post-meta__tags" href="/tags/PySpark/">PySpark    </a></div><div class="post_share"><div class="social-share" data-image="/images/cover/7.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><a class="reward-button button--primary button--animated"> <i class="fa fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="lazyload post-qr-code__img" src="/images/site/reward/wechat.png" alt="微信"><div class="post-qr-code__desc">微信</div></li><li class="reward-item"><img class="lazyload post-qr-code__img" src="/images/site/reward/alipay.png" alt="支付宝"><div class="post-qr-code__desc">支付宝</div></li></ul></div></a></div><nav class="pagination_post" id="pagination"><div class="prev-post pull_left"><a href="/article/2019061201.html"><img class="prev_cover lazyload" data-src="/images/cover/2.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="label">上一篇</div><div class="prev_info"><span>hexo博客支持pwa</span></div></a></div><div class="next-post pull_right"><a href="/article/2019052801.html"><img class="next_cover lazyload" data-src="/images/cover/1.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>hexo博客中添加gitalk评论插件</span></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="https://foochane.cn/article/2019051902.html" title="HDFS命令行客户端的常用操作命令"><img class="relatedPosts_cover lazyload"data-src="/images/cover/4.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2019-05-19</div><div class="relatedPosts_title">HDFS命令行客户端的常用操作命令</div></div></a></div><div class="relatedPosts_item"><a href="https://foochane.cn/article/2019051901.html" title="Hadoop分布式集群的搭建"><img class="relatedPosts_cover lazyload"data-src="/images/cover/3.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2019-05-19</div><div class="relatedPosts_title">Hadoop分布式集群的搭建</div></div></a></div><div class="relatedPosts_item"><a href="https://foochane.cn/article/2019051904.html" title="Spark的安装及配置"><img class="relatedPosts_cover lazyload"data-src="/images/cover/6.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2019-05-19</div><div class="relatedPosts_title">Spark的安装及配置</div></div></a></div><div class="relatedPosts_item"><a href="https://foochane.cn/article/2019061301.html" title="Spark相关知识介绍"><img class="relatedPosts_cover lazyload"data-src="/images/cover/9.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2019-06-13</div><div class="relatedPosts_title">Spark相关知识介绍</div></div></a></div><div class="relatedPosts_item"><a href="https://foochane.cn/article/2019061401.html" title="spark-shell运行及spark运用提交"><img class="relatedPosts_cover lazyload"data-src="/images/cover/8.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2019-06-14</div><div class="relatedPosts_title">spark-shell运行及spark运用提交</div></div></a></div><div class="relatedPosts_item"><a href="https://foochane.cn/article/2019051903.html" title="Hive的安装及配置"><img class="relatedPosts_cover lazyload"data-src="/images/cover/5.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2019-05-19</div><div class="relatedPosts_title">Hive的安装及配置</div></div></a></div></div><div class="clear_both"></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var notify = true == true ? true : false;
+var verify = false == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'zCeKCftRr91sIth6b8UsWKb9-gzGzoHsz',
+  appKey:'SIMyV1MuzsbUpvUErd6bUlC2',
+  placeholder:'Please leave your footprints',
+  avatar:'monsterid',
+  guest_info:guest_info,
+  pageSize:'10',
+  lang:'zh-cn',
+  recordIP: true
+});</script></div></div></main><footer id="footer" style="background-image: url(/images/banner/0.jpg)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2022 By foochane</div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-list-ul close" id="mobile-toc-button" title="目录" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async=""></script><script src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/click_heart.js"></script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>
